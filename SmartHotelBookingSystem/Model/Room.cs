@@ -2,7 +2,7 @@
 {
     public class Room
     {
-        public int RoomID { get; set; }
+        public Guid RoomID { get; set; }
         public int HotelID { get; set; }
         public string Type { get; set; }
         public decimal Price { get; set; }

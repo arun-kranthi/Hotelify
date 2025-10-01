@@ -2,13 +2,13 @@
 {
     public class Booking
     {
-        public int BookingID { get; set; }
-        public int UserID { get; set; }
-        public int RoomID { get; set; }
+        public Guid BookingID { get; set; }
+        public string UserID { get; set; }
+        public string RoomID { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
         public string Status { get; set; }
-        public int PaymentID { get; set; }
+        public string PaymentID { get; set; }
 
         public User User { get; set; }
         public Room Room { get; set; }

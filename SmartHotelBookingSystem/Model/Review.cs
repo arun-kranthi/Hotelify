@@ -2,10 +2,10 @@
 {
     public class Review
     {
-        public int ReviewID { get; set; }
-        public int UserID { get; set; }
-        public int HotelID { get; set; }
-        public int Rating { get; set; }
+        public Guid ReviewID { get; set; }
+        public string UserID { get; set; }
+        public string HotelID { get; set; }
+        public string Rating { get; set; }
         public string Comment { get; set; }
         public DateTime Timestamp { get; set; }
 

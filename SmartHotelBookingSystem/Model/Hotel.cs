@@ -2,10 +2,10 @@
 {
     public class Hotel
     {
-        public int HotelID { get; set; }
+        public Guid HotelID { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
-        public int ManagerId { get; set; }
+        public string ManagerId { get; set; }
         public string Amenities { get; set; }
         public string Rating { get; set; }
 

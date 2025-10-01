@@ -2,9 +2,9 @@
 {
     public class Redemption
     {
-        public int RedemptionID { get; set; }
-        public int UserID { get; set; }
-        public int BookingID { get; set; }
+        public Guid RedemptionID { get; set; }
+        public string UserID { get; set; }
+        public string BookingID { get; set; }
         public int PointsUsed { get; set; }
         public decimal DiscountAmount { get; set; }
 
