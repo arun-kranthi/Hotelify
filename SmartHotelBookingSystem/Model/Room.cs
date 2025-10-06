@@ -1,8 +1,11 @@
-﻿namespace SmartHotelBookingSystem.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SmartHotelBookingSystem.Model
 {
     public class Room
     {
-        public Guid RoomID { get; set; }
+        [Key]
+        public int RoomID { get; set; }
         public int HotelID { get; set; }
         public string Type { get; set; }
         public decimal Price { get; set; }
@@ -10,6 +13,8 @@
         public string Features { get; set; }
 
         public Hotel Hotel { get; set; }
+        public ICollection<Booking> Bookings { get; set; }
+
 
     }
 }

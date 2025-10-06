@@ -1,8 +1,11 @@
-﻿namespace SmartHotelBookingSystem.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SmartHotelBookingSystem.Model
 {
     public class Redemption
     {
-        public Guid RedemptionID { get; set; }
+        [Key]
+        public int RedemptionID { get; set; }
         public string UserID { get; set; }
         public string BookingID { get; set; }
         public int PointsUsed { get; set; }

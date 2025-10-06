@@ -1,8 +1,11 @@
-﻿namespace SmartHotelBookingSystem.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SmartHotelBookingSystem.Model
 {
     public class Review
     {
-        public Guid ReviewID { get; set; }
+        [Key]
+        public int ReviewID { get; set; }
         public string UserID { get; set; }
         public string HotelID { get; set; }
         public string Rating { get; set; }

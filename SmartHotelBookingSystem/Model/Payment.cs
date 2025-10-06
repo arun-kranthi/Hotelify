@@ -1,8 +1,10 @@
-﻿namespace SmartHotelBookingSystem.Model
+﻿using System.ComponentModel.DataAnnotations;
+namespace SmartHotelBookingSystem.Model
 {
     public class Payment
     {
-        public Guid PaymentID { get; set; }
+        [Key]
+        public int PaymentID { get; set; }
         public string UserID { get; set; }
         public string BookingID { get; set; }
         public decimal Amount { get; set; }
