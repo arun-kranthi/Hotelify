@@ -6,7 +6,7 @@ namespace SmartHotelBookingSystem.Model
     {
         [Key]
         public int LoyaltyID { get; set; }
-        public string UserID { get; set; }
+        public int UserID { get; set; }
         public int PointsBalance { get; set; }
         public DateTime LastUpdated { get; set; }
 
