@@ -6,12 +6,17 @@ namespace SmartHotelBookingSystem.Model
     {
         [Key]
         public int UserID { get; set; }
+        [Required]
         public string Name { get; set; }
         
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
+        [Required]
         public string Password { get; set; }
+        [Required]
         public string Role { get; set; }
-
+        [Required]
         [Phone]
         public string ContactNumber { get; set; }
         public ICollection<Booking> Bookings { get; set; }
