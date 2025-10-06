@@ -24,6 +24,9 @@ namespace SmartHotelBookingSystem.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<User>()
+                .Property(u => u.Role)
+                .HasConversion<string>();
             // One Hotel has many Rooms; each Room belongs to one Hotel
             modelBuilder.Entity<Hotel>()
                 .HasMany(h => h.Rooms)

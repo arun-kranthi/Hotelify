@@ -1,4 +1,5 @@
 ﻿using SmartHotelBookingSystem.DTO;
+using SmartHotelBookingSystem.Enums;
 using SmartHotelBookingSystem.Model;
 using SmartHotelBookingSystem.Repository;
 using SmartHotelBookingSystem.Services.Authentication;
@@ -34,7 +35,7 @@ namespace SmartHotelBookingSystem.Services
                 UserID = u.UserID,
                 Name = u.Name,
                 Email = u.Email,
-                Role = u.Role,
+                Role = u.Role.ToString(),
                 ContactNumber = u.ContactNumber,
             });
         }
@@ -46,7 +47,7 @@ namespace SmartHotelBookingSystem.Services
                 Name=createDto.Name,
                 Email=createDto.Email,
                 Password=createDto.Password,
-                Role=createDto.Role,
+                Role = Enum.Parse<UserRole>(createDto.Role,ignoreCase:true),
                 ContactNumber=createDto.ContactNumber,
             };
             await _repo.AddUserAsync(user);
@@ -55,7 +56,7 @@ namespace SmartHotelBookingSystem.Services
                 UserID=user.UserID,
                 Name=user.Name,
                 Email=user.Email,
-                Role=user.Role,
+                Role=user.Role.ToString(),
                 ContactNumber=user.ContactNumber,
             };
         }

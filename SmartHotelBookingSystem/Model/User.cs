@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SmartHotelBookingSystem.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace SmartHotelBookingSystem.Model
 {
@@ -15,7 +16,7 @@ namespace SmartHotelBookingSystem.Model
         [Required]
         public string Password { get; set; }
         [Required]
-        public string Role { get; set; }
+        public UserRole Role { get; set; }
         [Required]
         [Phone]
         public string ContactNumber { get; set; }
