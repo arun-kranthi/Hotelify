@@ -6,8 +6,8 @@ namespace SmartHotelBookingSystem.Model
     {
         [Key]
         public int BookingID { get; set; }
-        public string UserID { get; set; }
-        public string RoomID { get; set; }
+        public int UserID { get; set; }
+        public int RoomID { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
         public string Status { get; set; }

@@ -34,7 +34,8 @@ namespace SmartHotelBookingSystem.Data
             modelBuilder.Entity<Booking>()
                 .HasOne(b => b.User)
                 .WithMany(u => u.Bookings)
-                .HasForeignKey(b => b.UserID);
+                .HasForeignKey(b => b.UserID)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // One Room can have many Bookings; each Booking is for one Room
             modelBuilder.Entity<Booking>()
@@ -46,19 +47,22 @@ namespace SmartHotelBookingSystem.Data
             modelBuilder.Entity<Payment>()
                 .HasOne(p => p.Booking)
                 .WithOne(b => b.Payment)
-                .HasForeignKey<Payment>(p => p.BookingID);
+                .HasForeignKey<Payment>(p => p.BookingID)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // One User can make many Payments; each Payment is made by one User
             modelBuilder.Entity<Payment>()
                 .HasOne(p => p.User)
                 .WithMany(u => u.Payments)
-                .HasForeignKey(p => p.UserID);
+                .HasForeignKey(p => p.UserID)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // One User can write many Reviews; each Review is written by one User
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.User)
                 .WithMany(u => u.Reviews)
-                .HasForeignKey(r => r.UserID);
+                .HasForeignKey(r => r.UserID)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // One Hotel can have many Reviews; each Review is for one Hotel
             modelBuilder.Entity<Review>()
@@ -70,19 +74,22 @@ namespace SmartHotelBookingSystem.Data
             modelBuilder.Entity<LoyaltyAccount>()
                 .HasOne(la => la.User)
                 .WithOne(u => u.LoyaltyAccount)
-                .HasForeignKey<LoyaltyAccount>(la => la.UserID);
+                .HasForeignKey<LoyaltyAccount>(la => la.UserID)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // One User can have many Redemptions; each Redemption is made by one User
             modelBuilder.Entity<Redemption>()
                 .HasOne(r => r.User)
                 .WithMany(u => u.Redemptions)
-                .HasForeignKey(r => r.UserID);
+                .HasForeignKey(r => r.UserID)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // One Booking has one Redemption; each Redemption is for one Booking
             modelBuilder.Entity<Redemption>()
                 .HasOne(r => r.Booking)
                 .WithOne(b => b.Redemption)
-                .HasForeignKey<Redemption>(r => r.BookingID);
+                .HasForeignKey<Redemption>(r => r.BookingID)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

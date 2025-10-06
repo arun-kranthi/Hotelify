@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace SmartHotelBookingSystem.Model
 {
@@ -8,6 +9,7 @@ namespace SmartHotelBookingSystem.Model
         public int RoomID { get; set; }
         public int HotelID { get; set; }
         public string Type { get; set; }
+        [Precision(18,2)]
         public decimal Price { get; set; }
         public bool Availability { get; set; }
         public string Features { get; set; }
