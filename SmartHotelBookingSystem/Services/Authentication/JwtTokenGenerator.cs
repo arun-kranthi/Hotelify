@@ -25,9 +25,9 @@ namespace SmartHotelBookingSystem.Services.Authentication
                 new Claim(ClaimTypes.Role,user.Role.ToString()),
                 new Claim("Name",user.Name)
             };
-            //generate key
+            //generate key Reads the secret key from configuration (appsettings.json)
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:key"]));
-            //creating signing credentials
+            //creating signing credentials by using the key and algorithm
             var creds=new SigningCredentials(key,SecurityAlgorithms.HmacSha256);
             //create token
             var token = new JwtSecurityToken(

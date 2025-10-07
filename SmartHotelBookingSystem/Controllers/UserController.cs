@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SmartHotelBookingSystem.DTO;
 using SmartHotelBookingSystem.Services;
 
@@ -29,11 +30,30 @@ namespace SmartHotelBookingSystem.Controllers
             }
             return Ok(new { Token = token});
         }
-        [HttpGet]
+        [Authorize(Roles ="Admin")]
+        [HttpGet("admin-only")]
         public async Task<IActionResult> GetAllUsers()
         {
             var users = await _userService.GetAllUsersAsync();
             return Ok(users);
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpPut("update-admin-only/{id}")]
+        public async Task<IActionResult> UpdateUser([FromRoute] int id, [FromBody] UserUpdateDto updateDto)
+        {
+            var updatedUser =await _userService.UpdateUserAsync(id, updateDto);
+            return Ok(updatedUser);
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("delete-admin-only/{id}")]
+        public async Task<IActionResult> DeleteUser([FromRoute] int id)
+        {
+            var success= await _userService.DeleteUserAsync(id);
+            if(!success)
+            {
+                return NotFound("User not found");
+            }
+            return Ok("Delete Successful");
         }
 
     }

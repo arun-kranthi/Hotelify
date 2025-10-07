@@ -8,21 +8,30 @@ namespace SmartHotelBookingSystem.Services
 {
     public class UserService : IUserService
     {
+
         private readonly IUserRepository _repo;
         private readonly IJwtTokenGenerator _tokenGen;
-        public UserService(IUserRepository repo, IJwtTokenGenerator tokenGen)
+        private readonly PasswordHashing _passwordHashing;
+        public UserService(IUserRepository repo, IJwtTokenGenerator tokenGen,PasswordHashing passwordHashing)
         {
             _repo = repo;
             _tokenGen = tokenGen;
+            _passwordHashing = passwordHashing;
         }
-
+        
         public async Task<string> AuthenticateAsync(UserLoginDto loginDto)
         {
             var user = await _repo.GetUserByEmailAsync(loginDto.Email);
-            if (user == null || user.Password != loginDto.Password)
+            if (user == null)
             {
                 return null;
             }
+            bool isPasswordValid = _passwordHashing.VerifyPassword(user.Password, loginDto.Password);
+            if(!isPasswordValid)
+            {
+                return null;
+            }
+            //generate token
             return _tokenGen.GenerateToken(user);
         }
 
@@ -42,11 +51,12 @@ namespace SmartHotelBookingSystem.Services
 
         public async Task<UserResponseDto> RegisterAsync(UserCreateDto createDto)
         {
+            string hashedPassword = _passwordHashing.HashPassword(createDto.Password);
             var user = new User
             {
                 Name=createDto.Name,
                 Email=createDto.Email,
-                Password=createDto.Password,
+                Password=hashedPassword,
                 Role = Enum.Parse<UserRole>(createDto.Role,ignoreCase:true),
                 ContactNumber=createDto.ContactNumber,
             };
@@ -58,6 +68,35 @@ namespace SmartHotelBookingSystem.Services
                 Email=user.Email,
                 Role=user.Role.ToString(),
                 ContactNumber=user.ContactNumber,
+            };
+        }
+        public async Task<bool> DeleteUserAsync(int id)
+        {
+            var user = await _repo.GetUserByIdAsync(id);
+            if (user == null)
+                return false;
+            await _repo.DeleteUserAsync(id);
+            return true;
+        }
+
+        public async Task<UserResponseDto> UpdateUserAsync(int id, UserUpdateDto updateDto)
+        {
+            var user= await _repo.GetUserByIdAsync(id);
+            if (user == null)
+                throw new Exception($"User with ID {id} not found.");
+
+            user.Name = updateDto.Name;
+            user.Email = updateDto.Email;
+            user.ContactNumber = updateDto.ContactNumber;
+
+            await _repo.UpdateUserAsync(user);
+            return new UserResponseDto
+            {
+                UserID=user.UserID,
+                Name=user.Name, 
+                Email=user.Email,
+                Role=user.Role.ToString(),
+                ContactNumber = user.ContactNumber
             };
         }
     }

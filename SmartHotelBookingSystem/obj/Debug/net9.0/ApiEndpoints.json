@@ -2,11 +2,27 @@
   {
     "ContainingType": "SmartHotelBookingSystem.Controllers.UserController",
     "Method": "GetAllUsers",
-    "RelativePath": "api/User",
+    "RelativePath": "api/User/admin-only",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartHotelBookingSystem.Controllers.UserController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/User/delete-admin-only/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -36,6 +52,27 @@
       {
         "Name": "userdto",
         "Type": "SmartHotelBookingSystem.DTO.UserCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartHotelBookingSystem.Controllers.UserController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/User/update-admin-only/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updateDto",
+        "Type": "SmartHotelBookingSystem.DTO.UserUpdateDto",
         "IsRequired": true
       }
     ],

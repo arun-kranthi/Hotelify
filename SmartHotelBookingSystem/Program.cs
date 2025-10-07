@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using SmartHotelBookingSystem.Data;
 using SmartHotelBookingSystem.Repository;
 using SmartHotelBookingSystem.Services;
@@ -17,16 +18,48 @@ builder.Services.AddControllers();
 //add swagger
 //builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c=>
+{
+    //definition of the swagger document
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "SmartHotelBookingSystem", Version="v1" });
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name="Authorization",
+        Type=SecuritySchemeType.Http,
+        Scheme="Bearer",
+        BearerFormat="JWT",
+        In=ParameterLocation.Header,
+        Description="Enter Token"
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        { 
+            new OpenApiSecurityScheme
+            {
+                Reference=new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            new string[] {}
+        }
+        
+
+    });
+}
+    );
 //creates new instace for every request
 builder.Services.AddDbContext<BookingDBContext>(options=>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddScoped<IJwtTokenGenerator,JwtTokenGenerator>();
+builder.Services.AddScoped<PasswordHashing>();
+builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+//Adding Authentication
 builder.Services.AddAuthentication(
     JwtBearerDefaults.AuthenticationScheme
-    ).AddJwtBearer(
+    ).AddJwtBearer("Bearer",
         option =>
         {
             option.TokenValidationParameters = new TokenValidationParameters
@@ -42,6 +75,16 @@ builder.Services.AddAuthentication(
        }
     );
 builder.Services.AddAuthorization();
+//Enabling CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
