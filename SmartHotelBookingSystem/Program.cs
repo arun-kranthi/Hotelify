@@ -52,7 +52,7 @@ builder.Services.AddSwaggerGen(c=>
 //creates new instace for every request
 builder.Services.AddDbContext<BookingDBContext>(options=>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddScoped<PasswordHashing>();
+builder.Services.AddTransient<PasswordHashing>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
