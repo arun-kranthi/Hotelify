@@ -10,7 +10,7 @@ namespace SmartHotelBookingSystem.Model
         public string Location { get; set; }
         public string ManagerId { get; set; }
         public string Amenities { get; set; }
-        public string Rating { get; set; }
+        public double Rating { get; set; }
 
         public User? Manager { get; set; }
         public ICollection<Room> Rooms { get; set; }

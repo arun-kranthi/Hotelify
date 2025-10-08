@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\2446383\\Source\\Repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj": {}
+    "C:\\Users\\2446395\\Source\\Repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\2446383\\Source\\Repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj": {
+    "C:\\Users\\2446395\\Source\\Repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\2446383\\Source\\Repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj",
+        "projectUniqueName": "C:\\Users\\2446395\\Source\\Repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj",
         "projectName": "SmartHotelBookingSystem",
-        "projectPath": "C:\\Users\\2446383\\Source\\Repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj",
-        "packagesPath": "C:\\Users\\2446383\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\2446383\\Source\\Repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\obj\\",
+        "projectPath": "C:\\Users\\2446395\\Source\\Repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj",
+        "packagesPath": "C:\\Users\\2446395\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\2446395\\Source\\Repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\2446383\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\2446395\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
