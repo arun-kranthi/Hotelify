@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\ReviewDto\" />
     <Folder Include="Mappers\" />
   </ItemGroup>
 
