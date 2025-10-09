@@ -4,11 +4,14 @@ namespace SmartHotelBookingSystem.Repository.module2_Repos
 {
     public interface IRoomRepository
     {
-        Task<Room> AddAsync(Room room);
-        Task<Room> GetIdByAsync(int id);
-        Task<IEnumerable<Room>> GetByHotelIdAsync(int hotelId);
-        Task UpdateAsync(Room room);
-        Task DeleteAsync(Room room);
-        Task<IEnumerable<Room>> SearchAvailabilityAsyc(string? location,string? type,decimal? minPrice,decimal? maxPrice);
+        Task AddAsync(Room room);
+
+        Task<IEnumerable<Room>> GetAllAsync();
+        Task<Room?> GetByIdAsync(int id);
+        
+        void Update(Room room);
+        void Remove(Room room);
+        Task SaveChangesAsync();
+        Task<IEnumerable<Room>> SearchAsync(int? hotelId, string? type, decimal? minPrice, bool? availability);
     }
 }

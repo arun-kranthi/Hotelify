@@ -1,16 +1,19 @@
-﻿using SmartHotelBookingSystem.Model;
+﻿using SmartHotelBookingSystem.DTO.module_2;
+using SmartHotelBookingSystem.Model;
 
 namespace SmartHotelBookingSystem.Services.Module2_services
 {
     public interface IHotelService
     {
-        Task<Hotel> CreateAsync(Hotel hotel);
-        Task<Hotel?> GetByIdAsync(Hotel hotel);
+        Task<IEnumerable<HotelReadDto>> GetAllAsync();
+        Task<HotelReadDto?> GetByIdAsync(int id);
+        Task<HotelReadDto> CreateAsync(HotelCreateDto dto);
+        
 
-        Task<IEnumerable<Hotel>> GetAllAsync();
+        
 
-        Task UpdateAsync(Hotel hotel);
+        Task UpdateAsync(int id ,HotelUpdateDto dto);
         Task DeleteAsync(int id);
-        Task<IEnumerable<Hotel>> SearchAsync(string name, string location);
+        
     }
 }

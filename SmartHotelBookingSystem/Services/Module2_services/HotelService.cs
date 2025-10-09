@@ -1,4 +1,7 @@
-﻿using SmartHotelBookingSystem.Model;
+﻿using AutoMapper;
+using Microsoft.Identity.Client;
+using SmartHotelBookingSystem.DTO.module_2;
+using SmartHotelBookingSystem.Model;
 using SmartHotelBookingSystem.Repository.module2_Repos;
 
 namespace SmartHotelBookingSystem.Services.Module2_services
@@ -6,46 +9,62 @@ namespace SmartHotelBookingSystem.Services.Module2_services
     public class HotelService : IHotelService
     {
         private readonly IHotelRepository _repository;
-        private readonly ILogger<HotelService> _logger;
-        public HotelService(IHotelRepository repository, ILogger<HotelService> logger)
+       
+        private readonly IMapper _mapper;
+        public HotelService(IHotelRepository repository, IMapper mapper)
         {
             _repository = repository;
-            _logger = logger;
+            _mapper = mapper;
         }
 
-        public async Task<Hotel> CreateAsync(Hotel hotel)
+        public async Task<IEnumerable<HotelReadDto>> GetAllAsync()
         {
-            var created = await _repository.AddAsync(hotel);
-            _logger.LogInformation("Created hotel {HotelID}", created.HotelID);
-            return created;
+            var hotels = await _repository.GetAllAsync();
+            return _mapper.Map<IEnumerable<HotelReadDto>>(hotels);
         }
+
+        public async Task<HotelReadDto?> GetByIdAsync(int id)
+        {
+            var hotel =await  _repository.GetByIdAsync(id);
+            return hotel == null? null : _mapper.Map<HotelReadDto>(hotel);
+        }
+
+        public async Task<HotelReadDto> CreateAsync(HotelCreateDto dto)
+        {
+            var hotel = _mapper.Map<Hotel>(dto);
+            await _repository.AddAsync(hotel);
+            await _repository.SaveChangesAsync();
+            return _mapper.Map<HotelReadDto>(hotel);
+        }
+
+        public async Task UpdateAsync(int id,HotelUpdateDto dto)
+        {
+            
+              var hotel = await _repository.GetByIdAsync(id);
+                if(hotel == null)
+                {
+                    throw new KeyNotFoundException($"Hotel Not Found");
+                }
+                _mapper.Map(dto, hotel);
+                _repository.Update(hotel);
+                 await _repository.SaveChangesAsync();
+        }
+         
+
         public async Task DeleteAsync(int id)
         {
-            var existing=await _repository.GetByIdAsync(id);
-            if(existing == null)                
-                throw new KeyNotFoundException($"Room Not Found");
-            
-            await _repository.DeleteAsync(existing);
-            _logger.LogInformation("Deleted hotel {HotelID}",id);
+            var hotel= await _repository.GetByIdAsync(id);
+            if(hotel == null)
+            {
+                throw new KeyNotFoundException($"Hotel Not Found");
+            }
+            _repository.Remove(hotel);
+            await _repository.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Hotel>> GetAllAsync()
-        {
-            return _repository.GetAllAsync();
-        }
-        public Task<Hotel?> GetByIdAsync(int id)
-        {
-            return _repository.GetByIdAsync(id);
-        }
-        public Task UpdateAsync(Hotel hotel)
-        {
-            hotel.UpdatedAt = DateTime.UtcNow;
-            _logger.LogInformation("Updating Hotel {HotelId}", hotel.HotelID);
-            return _repository .UpdateAsync(hotel);
-        }
-        public Task<IEnumerable<Hotel>> SearchAsync(string name, string location)
-        {
-            return _repository.SearchAsync(name, location);
-        }
+       
+        
+        
+        
     }
 }

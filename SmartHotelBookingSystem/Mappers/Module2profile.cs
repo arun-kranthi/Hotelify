@@ -8,13 +8,14 @@ namespace SmartHotelBookingSystem.Mappers
     public class Module2profile : Profile
     {
         public Module2profile() {
-            CreateMap<Hotel, HotelcreateDto>();
-            CreateMap<HotelReadDto, Hotel>();
+            CreateMap<Hotel, HotelReadDto>();
+            CreateMap<HotelCreateDto, Hotel>();
             CreateMap<HotelUpdateDto, Hotel>();
+            
 
-            CreateMap<Room, RoomCreateDto>();
-            CreateMap<RoomReadDto, Room>();
-            CreateMap<RoomUpdateDto, Hotel>();
+            CreateMap<Room, RoomReadDto>();
+            CreateMap<RoomCreateDto, Room>();
+            CreateMap<RoomUpdateDto, Room>();
 
         }
     }
