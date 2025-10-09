@@ -5,6 +5,8 @@ namespace SmartHotelBookingSystem.Model
 {
     public class Room
     {
+        internal DateTime UpdatedAt;
+
         [Key]
         public int RoomID { get; set; }
         public int HotelID { get; set; }
