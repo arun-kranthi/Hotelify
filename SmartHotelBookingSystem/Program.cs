@@ -10,6 +10,8 @@ using SmartHotelBookingSystem.Services;
 using SmartHotelBookingSystem.Services.Authentication;
 using AutoMapper;
 using System.Text;
+using SmartHotelBookingSystem.Repository.module2_Repos;
+using SmartHotelBookingSystem.Services.Module2_services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,6 +60,12 @@ builder.Services.AddTransient<PasswordHashing>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IHotelRepository, HotelRepository>();
+builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+
+builder.Services.AddScoped<IHotelService, HotelService>();
+builder.Services.AddScoped<IRoomService, RoomService>();
+
 builder.Services.AddScoped<ILoyaltyRepository, LoyaltyRepository>();
 builder.Services.AddScoped<IloyaltyServices, LoyaltyServices>();
 
