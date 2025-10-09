@@ -1,3 +1,13 @@
+bin/
+obj/
 .vs/
-**/obj/
-**/bin/
+*.user
+*.suo
+*.cache
+*.log
+
+project.assests.json
+project.nuget.cache
+*.nuget.g.props
+*.nuget.g.targets
+*.dgspec.json
