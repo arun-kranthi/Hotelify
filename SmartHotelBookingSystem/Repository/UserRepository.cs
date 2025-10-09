@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SmartHotelBookingSystem.Data;
+﻿using SmartHotelBookingSystem.Data;
 using SmartHotelBookingSystem.Model;
 
 namespace SmartHotelBookingSystem.Repository

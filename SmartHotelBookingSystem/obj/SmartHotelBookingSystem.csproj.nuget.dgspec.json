@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\2446391\\Source\\Repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj": {}
+    "C:\\Users\\2446391\\source\\repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\2446391\\Source\\Repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj": {
+    "C:\\Users\\2446391\\source\\repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\2446391\\Source\\Repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj",
+        "projectUniqueName": "C:\\Users\\2446391\\source\\repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj",
         "projectName": "SmartHotelBookingSystem",
-        "projectPath": "C:\\Users\\2446391\\Source\\Repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj",
+        "projectPath": "C:\\Users\\2446391\\source\\repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj",
         "packagesPath": "C:\\Users\\2446391\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\2446391\\Source\\Repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\obj\\",
         "projectStyle": "PackageReference",
@@ -54,6 +54,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[15.0.1, )"
+            },
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.5.1, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",

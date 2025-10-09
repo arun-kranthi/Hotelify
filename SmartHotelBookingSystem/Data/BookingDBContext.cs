@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmartHotelBookingSystem.Model;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.SqlServer;
+
 
 namespace SmartHotelBookingSystem.Data
 {
@@ -93,6 +96,11 @@ namespace SmartHotelBookingSystem.Data
                 .WithOne(b => b.Redemption)
                 .HasForeignKey<Redemption>(r => r.BookingID)
                 .OnDelete(DeleteBehavior.Restrict);
+        }
+
+        internal async Task SaveChangesAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }
