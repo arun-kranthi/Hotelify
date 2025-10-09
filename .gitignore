@@ -1,0 +1,13 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+
+project.assests.json
+project.nuget.cache
+*.nuget.g.props
+*.nuget.g.targets
+*.dgspec.json
