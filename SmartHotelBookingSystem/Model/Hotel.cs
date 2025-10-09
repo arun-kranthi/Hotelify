@@ -13,6 +13,8 @@ namespace SmartHotelBookingSystem.Model
         public double Rating { get; set; }
 
         public User? Manager { get; set; }
+
+        public DateTime? UpdatedAt { get; set; }
         public ICollection<Room> Rooms { get; set; }
         public ICollection<Review> Reviews { get; set; }
         
