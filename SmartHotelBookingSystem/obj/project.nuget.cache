@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AgxS16MdryI=",
+  "dgSpecHash": "QkUGyinj9YI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\2446391\\source\\repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj",
+  "projectFilePath": "C:\\Users\\2446391\\Source\\Repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\2446391\\.nuget\\packages\\automapper\\15.0.1\\automapper.15.0.1.nupkg.sha512",
     "C:\\Users\\2446391\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
@@ -93,15 +93,5 @@
     "C:\\Users\\2446391\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\2446391\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "message": "Problem reading the cache file C:\\Users\\2446391\\source\\repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
-      "projectPath": "C:\\Users\\2446391\\source\\repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\2446391\\source\\repos\\SmartHotelBookingSystem\\SmartHotelBookingSystem\\SmartHotelBookingSystem.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }

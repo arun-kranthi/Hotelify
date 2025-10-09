@@ -8,6 +8,7 @@ namespace SmartHotelBookingSystem.Services
         Task<IEnumerable<ReviewResponseDto>> GetReviewsForHotelAsync(int hotelId);
         Task<ReviewResponseDto> SubmitReviewAsync(int userId, ReviewCreateDto dto);
         //Task FeedBackToReviewAsync(int reviewId, int managerId, string Response);
+        Task TestMethod(int UserId);
     }
 
 }
