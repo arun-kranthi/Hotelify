@@ -5,10 +5,11 @@ namespace SmartHotelBookingSystem.Services
 
     public interface IReviewService
     {
-        Task<IEnumerable<ReviewResponseDto>> GetReviewsForHotelAsync(int hotelId);
-        Task<ReviewResponseDto> SubmitReviewAsync(int userId, ReviewCreateDto dto);
-        //Task FeedBackToReviewAsync(int reviewId, int managerId, string Response);
-        Task TestMethod(int UserId);
+        Task<IEnumerable<ReviewDto>> GetReviewsByHotelAsync(int hotelId);
+
+        Task<ReviewDto> AddReviewAsync(int userId, ReviewCreateDto dto);
+        public HotelRatingDto GetAverageRating(int hotelId);
+
     }
 
 }

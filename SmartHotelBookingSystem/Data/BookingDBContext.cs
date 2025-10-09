@@ -98,9 +98,6 @@ namespace SmartHotelBookingSystem.Data
                 .OnDelete(DeleteBehavior.Restrict);
         }
 
-        internal async Task SaveChangesAsync()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

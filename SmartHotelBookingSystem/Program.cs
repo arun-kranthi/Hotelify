@@ -60,6 +60,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ILoyaltyRepository, LoyaltyRepository>();
 builder.Services.AddScoped<IloyaltyServices, LoyaltyServices>();
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 //Adding Authentication

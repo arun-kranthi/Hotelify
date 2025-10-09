@@ -15,32 +15,49 @@ namespace SmartHotelBookingSystem.Services
             _repository = repository;
             _mapper = mapper;
         }
-
-        public async Task<IEnumerable<ReviewResponseDto>> GetReviewsForHotelAsync(int hotelId)
+        public async Task<IEnumerable<ReviewDto>> GetReviewsByHotelAsync(int hotelId)
         {
-            var reviews = await _repository.GetReviewsByHotelIdAsync(hotelId);
-            return _mapper.Map<IEnumerable<ReviewResponseDto>>(reviews);
+            var _review=await _repository.GetReviewsByHotelIdAsync(hotelId);
+            return _review.Select(r => new ReviewDto
+            {
+                ReviewId = r.ReviewID,
+                HotelId = r.HotelID,
+                Rating = r.Rating,
+                Comment = r.Comment,
+                Timestamp = DateTime.Now,
+                UserName = r.User?.Name
+            });
         }
-
-        public async Task<ReviewResponseDto> SubmitReviewAsync(int userId, ReviewCreateDto dto)
+        public async Task<ReviewDto> AddReviewAsync(int userId, ReviewCreateDto dto)
         {
+            if (dto.Rating < 1 || dto.Rating > 5) throw new ArgumentException("Rating must be between 1 and 5");
             var review = new Review
             {
-                UserID = userId,
-                HotelID = dto.HotelID,
-                Rating = dto.Rating,
-                Comment = dto.Comment,
-                Timestamp = DateTime.UtcNow
-            };
 
-            var savedReview = await _repository.AddReviewAsync(review);
-            return _mapper.Map<ReviewResponseDto>(savedReview);
+                HotelID = dto.HotelId,
+                Rating = dto.Rating,
+                Comment = dto.Comment
+            };
+            await _repository.AddReviewAsync(review);
+
+
+            return new ReviewDto
+            {
+
+                HotelId = dto.HotelId,
+                Rating = dto.Rating,
+                Comment = dto.Comment
+            };
         }
-       /// public async Task FeedBackToReviewAsync(int reviewId, int managerId, string Response)
-        //{
-          //  var review = await _repository.GetReviewByReviewIdAsync(reviewId);
-            //if (review == null) {
-            //}
-        //}
-    } 
+        public HotelRatingDto GetAverageRating(int hotelId)
+        {
+            var avgRating = _repository.GetAverageRatingByHotelId(hotelId);
+            return new HotelRatingDto
+            {
+                HotelID = hotelId,
+                AverageRating = avgRating
+            };
+        }
+
+    }
 }
