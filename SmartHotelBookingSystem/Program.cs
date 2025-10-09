@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SmartHotelBookingSystem.Data;
 using SmartHotelBookingSystem.Repository;
 using SmartHotelBookingSystem.Services;
 using SmartHotelBookingSystem.Services.Authentication;
+using AutoMapper;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -56,6 +58,10 @@ builder.Services.AddTransient<PasswordHashing>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ILoyaltyRepository, LoyaltyRepository>();
+builder.Services.AddScoped<IloyaltyServices, LoyaltyServices>();
+
+builder.Services.AddAutoMapper(typeof(Program));
 //Adding Authentication
 builder.Services.AddAuthentication(
     JwtBearerDefaults.AuthenticationScheme

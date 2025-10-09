@@ -1,0 +1,19 @@
+﻿using AutoMapper;
+using SmartHotelBookingSystem.DTO;
+using SmartHotelBookingSystem.Model;
+
+namespace SmartHotelBookingSystem.Mappers
+{
+    public class LoyaltyProfile:Profile
+    {
+        public LoyaltyProfile()
+        {
+            //passing data from server to client
+            CreateMap<LoyaltyAccount, LoyaltyAccountDto>();
+            CreateMap<Redemption, RedemptionDto>();
+            //passing the data from client to server
+            CreateMap<RedemptionDto, Redemption>();
+
+        }
+    }
+}
