@@ -1,4 +1,5 @@
-﻿using SmartHotelBookingSystem.Data;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using SmartHotelBookingSystem.Data;
 using SmartHotelBookingSystem.Model;
 using System;
 using System.Data.Entity;
@@ -28,12 +29,32 @@ namespace SmartHotelBookingSystem.Repository
         public async Task<Review> GetReviewByUserIdAsync(int UserId)
         {
             return await _context.Reviews.FindAsync(UserId);
+            await _context.SaveChangesAsync();
         }
 
 
-        public async Task<Review> GetReviewByIdAsync(int reviewId)
+        public async Task<Review> GetReviewByReviewIdAsync(int reviewId)
         {
             return await _context.Reviews.FindAsync(reviewId);
+            await _context.SaveChangesAsync();
+        }
+        public async Task UpdateReviewAsync(int reviewId)
+        {
+            var _review = await _context.Reviews.FindAsync(reviewId);
+                if (_review != null)
+            {
+                _context.Reviews.Update(_review);
+                await _context.SaveChangesAsync();
+            }
+        }
+        public async Task DeleteReviewAsync(int reviewId)
+        {
+            var _review = await _context.Reviews.FindAsync(reviewId);
+                if (_review != null)
+            {
+                _context.Reviews.Remove(_review);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

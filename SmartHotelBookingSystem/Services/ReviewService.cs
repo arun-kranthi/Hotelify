@@ -36,5 +36,11 @@ namespace SmartHotelBookingSystem.Services
             var savedReview = await _repository.AddReviewAsync(review);
             return _mapper.Map<ReviewResponseDto>(savedReview);
         }
-    }
+       /// public async Task FeedBackToReviewAsync(int reviewId, int managerId, string Response)
+        //{
+          //  var review = await _repository.GetReviewByReviewIdAsync(reviewId);
+            //if (review == null) {
+            //}
+        //}
+    } 
 }
