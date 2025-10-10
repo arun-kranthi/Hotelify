@@ -1,3 +1,4 @@
+
 bin/
 obj/
 .vs/
@@ -11,3 +12,8 @@ project.nuget.cache
 *.nuget.g.props
 *.nuget.g.targets
 *.dgspec.json
+
+#Assembly info file
+**/AssemblyInfo.cs
+#Ignore specific cache files
+**/AssemblyInfoInputs.cache
