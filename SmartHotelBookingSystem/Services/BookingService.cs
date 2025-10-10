@@ -59,6 +59,16 @@ namespace SmartHotelBookingSystem.Services
                 throw new Exception("Room not available for selected dates.");
             }
             var total = (decimal)(dto.CheckOutDate - dto.CheckInDate).TotalDays * room.Price;
+            //create payment
+            var payment = new Payment
+            {
+                UserID = dto.UserID,
+                //BookingID = booking.BookingID,
+                Amount = total,
+                Status = "Success",//assuming success for mock payment for now.
+                PaymentMethod = "Mock"
+            };
+            await _paymentRepo.AddAsync(payment);
             //now create new booking
             var booking = new Booking
             {
@@ -66,23 +76,16 @@ namespace SmartHotelBookingSystem.Services
                 RoomID = dto.RoomID,
                 CheckInDate = dto.CheckInDate,
                 CheckOutDate = dto.CheckOutDate,
-                Status = "Pending"
+                Status = "Pending",
+                PaymentID = payment.PaymentID.ToString()
             };
             //add to  bookings table
             await _bookingRepo.AddAsync(booking);
-            //create payment
-            var payment = new Payment
-            { 
-                UserID = dto.UserID,
-                BookingID = booking.BookingID,
-                Amount = total,
-                Status = "Success",//assuming success for mock payment for now.
-                PaymentMethod = "Mock"
-            };
-            await _paymentRepo.AddAsync(payment);
+            
 
             //link booking and payment
-            booking.PaymentID = payment.PaymentID.ToString();
+            payment.BookingID = booking.BookingID;
+            //booking.PaymentID = payment.PaymentID.ToString();
             booking.Status = "Confirmed";
 
             await _bookingRepo.UpdateAsync(booking);
