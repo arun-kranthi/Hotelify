@@ -13,3 +13,7 @@ project.nuget.cache
 *.nuget.g.targets
 *.dgspec.json
 
+#Assembly info file
+**/AssemblyInfo.cs
+#Ignore specific cache files
+**/AssemblyInfoInputs.cache
