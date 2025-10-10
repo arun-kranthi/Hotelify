@@ -5,7 +5,7 @@ namespace SmartHotelBookingSystem.Services
     public interface IBookingService
     {
         Task<BookingResponseDto> CreateBookingAsync(CreateBookingDto dto);
-        Task<BookingResponseDto> getBookingAsync(int bookingId);
+        Task<BookingResponseDto> GetBookingAsync(int bookingId);
         Task CancelBookingAsync(int bookingId);
     }
 }
