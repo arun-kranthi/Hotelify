@@ -24,8 +24,8 @@ namespace SmartHotelBookingSystem.Services
                 HotelId = r.HotelID,
                 Rating = r.Rating,
                 Comment = r.Comment,
-                Timestamp = DateTime.Now,
-                UserName = r.User?.Name
+                UserId = r.UserID,
+                UserName = r.User.Name
             });
         }
         public async Task<ReviewDto> AddReviewAsync(int userId, ReviewCreateDto dto)
@@ -33,7 +33,7 @@ namespace SmartHotelBookingSystem.Services
             if (dto.Rating < 1 || dto.Rating > 5) throw new ArgumentException("Rating must be between 1 and 5");
             var review = new Review
             {
-
+                UserID = userId,
                 HotelID = dto.HotelId,
                 Rating = dto.Rating,
                 Comment = dto.Comment

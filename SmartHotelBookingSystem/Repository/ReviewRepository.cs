@@ -13,12 +13,14 @@ namespace SmartHotelBookingSystem.Repository
 
         public ReviewRepository(BookingDBContext context)
         {
-            _context = context;
+            _context=context;
         }
 
         public async Task<IEnumerable<Review>> GetReviewsByHotelIdAsync(int hotelId)
         {
-            return await _context.Reviews.Where(r => r.HotelID == hotelId).ToListAsync();
+            return await _context.Reviews
+                .Include(r=>r.User)
+                .Where(r=>r.HotelID==hotelId).ToListAsync();
         }
 
         public async Task AddReviewAsync(Review review)
@@ -30,7 +32,7 @@ namespace SmartHotelBookingSystem.Repository
         
         public async Task<Review> GetReviewByUserIdAsync(int UserId)
         {
-            return await _context.Reviews.FindAsync(UserId);
+            return await _context.Reviews.FirstOrDefaultAsync(r=>r.UserID==UserId);
 
         }
 
@@ -43,7 +45,7 @@ namespace SmartHotelBookingSystem.Repository
         public async Task UpdateReviewAsync(int reviewId)
         {
             var _review = await _context.Reviews.FindAsync(reviewId);
-            if (_review != null)
+            if (_review!=null)
             {
                 _context.Reviews.Update(_review);
                 await _context.SaveChangesAsync();
@@ -52,7 +54,7 @@ namespace SmartHotelBookingSystem.Repository
         public async Task DeleteReviewAsync(int reviewId)
         {
             var _review = await _context.Reviews.FindAsync(reviewId);
-            if (_review != null)
+            if (_review!=null)
             {
                 _context.Reviews.Remove(_review);
                 await _context.SaveChangesAsync();
@@ -61,11 +63,10 @@ namespace SmartHotelBookingSystem.Repository
 
         public double GetAverageRatingByHotelId(int hotelId)
         {
-            var ratings = _context.Set<Review>()
-                                  .Where(r => r.HotelID == hotelId)
-                                  .Select(r => r.Rating);
-
-            return ratings.Any() ? ratings.Average() : 0.0;
+            var ratings=_context.Set<Review>()
+                                  .Where(r=>r.HotelID==hotelId)
+                                  .Select(r=>r.Rating);
+            return ratings.Any()?ratings.Average():0.0;
         }
 
         

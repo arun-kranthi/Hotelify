@@ -20,7 +20,7 @@ namespace SmartHotelBookingSystem.Controllers
         public async Task<ActionResult<IEnumerable<ReviewDto>>> GetReviewsByHotel(int hotelId)
         {
             var reviews = await _reviewService.GetReviewsByHotelAsync(hotelId);
-            if (reviews == null || !reviews.Any())
+            if (reviews == null)
                 return NotFound($"No reviews found for hotel ID {hotelId}");
 
             return Ok(reviews);
