@@ -16,8 +16,15 @@ namespace SmartHotelBookingSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateBookingDto dto)
         {
-            var result = await _bookingService.CreateBookingAsync(dto);
-            return Ok(result);
+            try
+            {
+                var result = await _bookingService.CreateBookingAsync(dto);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
