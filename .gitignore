@@ -17,3 +17,4 @@ project.nuget.cache
 **/AssemblyInfo.cs
 #Ignore specific cache files
 **/AssemblyInfoInputs.cache
+/SmartHotelBookingSystem/obj/Debug/net9.0/SmartHotelBookingSystem.AssemblyInfo.cs
