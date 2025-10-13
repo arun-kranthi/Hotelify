@@ -10,8 +10,7 @@ namespace SmartHotelBookingSystem.Model
         public int HotelID { get; set; }
         public int Rating { get; set; }
         public string Comment { get; set; }
-        public DateTime Timestamp { get; set; }
-
+        public DateTime Timestamp { get; set; } = DateTime.Now;
         public User User { get; set; }
         public Hotel Hotel { get; set; }
 
