@@ -426,3 +426,5 @@ C:\Users\2446395\Source\Repos\SmartHotelBookingSystem\SmartHotelBookingSystem\ob
 C:\Users\2446395\Source\Repos\SmartHotelBookingSystem\SmartHotelBookingSystem\obj\Debug\net9.0\SmartHot.4EBA1676.Up2Date
 C:\Users\2446395\Source\Repos\SmartHotelBookingSystem\SmartHotelBookingSystem\obj\Debug\net9.0\SmartHotelBookingSystem.genruntimeconfig.cache
 C:\Users\2446395\Source\Repos\SmartHotelBookingSystem\SmartHotelBookingSystem\obj\Debug\net9.0\ref\SmartHotelBookingSystem.dll
+C:\Users\2446383\source\repos\SmartHotelBookingSystem\SmartHotelBookingSystem\bin\Debug\net9.0\AutoMapper.dll
+C:\Users\2446383\source\repos\SmartHotelBookingSystem\SmartHotelBookingSystem\bin\Debug\net9.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

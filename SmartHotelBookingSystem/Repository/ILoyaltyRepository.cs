@@ -1,12 +1,14 @@
 ﻿using SmartHotelBookingSystem.Model;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SmartHotelBookingSystem.Repository
 {
     public interface ILoyaltyRepository
     {
-        LoyaltyAccount GetByUserId(int userId);
-        void AddPoints(int userId, int points);
-        void RedeemPoints(int userId, int bookingId, int points, decimal discount);
-
+        Task<LoyaltyAccount> GetByUserIdAsync(int userId);
+        Task AddPointsAsync(int userId, int points);
+        Task RedeemPointsAsync(int userId, int bookingId, int points, decimal discount);
+        Task<List<Redemption>> GetRedemptionsByUserIdAsync(int userId);
     }
 }
