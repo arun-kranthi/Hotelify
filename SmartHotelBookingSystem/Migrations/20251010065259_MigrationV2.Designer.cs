@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartHotelBookingSystem.Data;
 
@@ -11,9 +12,11 @@ using SmartHotelBookingSystem.Data;
 namespace SmartHotelBookingSystem.Migrations
 {
     [DbContext(typeof(BookingDBContext))]
-    partial class BookingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251010065259_MigrationV2")]
+    partial class MigrationV2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,7 +139,7 @@ namespace SmartHotelBookingSystem.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("BookingID")
+                    b.Property<int>("BookingID")
                         .HasColumnType("int");
 
                     b.Property<string>("PaymentMethod")
@@ -153,8 +156,7 @@ namespace SmartHotelBookingSystem.Migrations
                     b.HasKey("PaymentID");
 
                     b.HasIndex("BookingID")
-                        .IsUnique()
-                        .HasFilter("[BookingID] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("UserID");
 
@@ -334,7 +336,8 @@ namespace SmartHotelBookingSystem.Migrations
                     b.HasOne("SmartHotelBookingSystem.Model.Booking", "Booking")
                         .WithOne("Payment")
                         .HasForeignKey("SmartHotelBookingSystem.Model.Payment", "BookingID")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("SmartHotelBookingSystem.Model.User", "User")
                         .WithMany("Payments")

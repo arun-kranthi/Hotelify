@@ -68,6 +68,13 @@ builder.Services.AddScoped<IRoomService, RoomService>();
 
 builder.Services.AddScoped<ILoyaltyRepository, LoyaltyRepository>();
 builder.Services.AddScoped<IloyaltyServices, LoyaltyServices>();
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
+
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 //Adding Authentication

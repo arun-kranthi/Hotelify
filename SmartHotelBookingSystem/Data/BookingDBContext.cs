@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmartHotelBookingSystem.Model;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.SqlServer;
+
 
 namespace SmartHotelBookingSystem.Data
 {
@@ -94,5 +97,7 @@ namespace SmartHotelBookingSystem.Data
                 .HasForeignKey<Redemption>(r => r.BookingID)
                 .OnDelete(DeleteBehavior.Restrict);
         }
+
+        
     }
 }

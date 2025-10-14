@@ -13,3 +13,9 @@ project.nuget.cache
 *.nuget.g.targets
 *.dgspec.json
 
+#Assembly info file
+**/AssemblyInfo.cs
+#Ignore specific cache files
+**/AssemblyInfoInputs.cache
+/SmartHotelBookingSystem/obj/Debug/net9.0/SmartHotelBookingSystem.AssemblyInfo.cs
+/SmartHotelBookingSystem/obj/Debug/net9.0/SmartHotelBookingSystem.AssemblyInfoInputs.cache
