@@ -12,7 +12,7 @@ function App() {
       <div className="p-5 text-center bg-body-tertiary rounded-3">
   <i
   className="bi bi-house-heart-fill mt-4 mb-3"
-  style={{ color: "primary", fontSize: "100px" }}
+  style={{ color: "#0078d7", fontSize: "100px" }}
   aria-hidden="true"
 ></i>
 
