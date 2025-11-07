@@ -29,8 +29,16 @@ namespace SmartHotelBookingSystem.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await _bookingService.GetBookingAsync(id);
-            return Ok(result);
+            try
+            {
+                var result = await _bookingService.GetBookingAsync(id);
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound("Booking not found");
+            }
+            
         }
         [HttpPut("{id}/cancel")]
         public async Task<IActionResult> Cancel(int id)
