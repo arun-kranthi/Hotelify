@@ -1,0 +1,228 @@
+// =====================================
+// Smart Hotel Booking System Theme
+// Version: 1.0
+// Author: Arun
+// =====================================
+
+// -------------------------------------
+// 1. Import Fonts
+// -------------------------------------
+@import "https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@500;600&display=swap";
+
+// -------------------------------------
+// 2. Base Bootstrap Configuration
+// -------------------------------------
+
+// === Brand Colors ===
+$primary: #0078d7;
+$secondary: #6c757d;
+$accent: #f5b041;
+$success: #198754;
+$danger: #dc3545;
+$warning: #ffc107;
+$info: #0dcaf0;
+$light: #f8f9fa;
+$dark: #212529;
+
+// === Typography ===
+$font-family-base: 'Inter', sans-serif;
+$headings-font-family: 'Poppins', sans-serif;
+$headings-font-weight: 600;
+$font-size-base: 1rem; // 16px
+$font-size-lg: 1.25rem; // 20px
+$font-size-sm: 0.875rem; // 14px
+
+// === Border Radius & Shadows ===
+$border-radius: 0.5rem;
+$border-radius-lg: 1rem;
+$border-radius-pill: 50rem;
+$box-shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
+$box-shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.12);
+
+// === Spacing (Fibonacci-inspired scale) ===
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: 0.5rem, // 8px
+  2: 0.8125rem, // 13px
+  3: 1.3125rem, // 21px
+  4: 2.125rem, // 34px
+  5: 3.4375rem // 55px
+);
+
+// === Container Padding ===
+$container-padding-x: 1.3125rem;
+
+// === Button Customizations ===
+$btn-font-weight: 500;
+$btn-border-radius: 0.75rem;
+$btn-padding-y: 0.625rem;
+$btn-padding-x: 1.25rem;
+$btn-box-shadow: $box-shadow-sm;
+$btn-hover-box-shadow: 0 4px 12px rgba(0, 120, 215, 0.25);
+
+// === Navbar ===
+$navbar-light-color: $dark;
+$navbar-light-hover-color: $primary;
+$navbar-light-active-color: $primary;
+$navbar-padding-y: 1rem;
+
+// === Card Customization ===
+$card-border-radius: 1rem;
+$card-border-color: rgba(0, 0, 0, 0.05);
+$card-box-shadow: $box-shadow-sm;
+
+// === Tables ===
+$table-border-color: #e9ecef;
+$table-striped-bg: #f2f5f7;
+
+// === Form Controls ===
+$input-border-radius: 0.5rem;
+$input-focus-border-color: $primary;
+$input-placeholder-color: #adb5bd;
+
+// -------------------------------------
+// 3. Import Bootstrap Core
+// -------------------------------------
+@import "bootstrap/scss/bootstrap";
+
+// -------------------------------------
+// 4. Custom Global Overrides
+// -------------------------------------
+
+body {
+  font-family: $font-family-base;
+  background-color: $light;
+  color: $dark;
+  line-height: 1.6;
+}
+
+// Headings hierarchy (Golden ratio scale)
+h1, .h1 { font-size: 3.4375rem; font-family: $headings-font-family; }
+h2, .h2 { font-size: 2.125rem; font-family: $headings-font-family; }
+h3, .h3 { font-size: 1.3125rem; font-family: $headings-font-family; }
+h4, .h4 { font-size: 1.125rem; font-family: $headings-font-family; }
+
+// Utility text
+.text-muted { color: #6c757d !important; }
+
+// -------------------------------------
+// 5. Component Enhancements
+// -------------------------------------
+
+// Buttons
+.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+  color: #fff;
+  &:hover {
+    background-color: darken($primary, 8%);
+    box-shadow: $btn-hover-box-shadow;
+  }
+}
+
+.btn-outline-primary {
+  border-color: $primary;
+  color: $primary;
+  &:hover {
+    background-color: $primary;
+    color: #fff;
+  }
+}
+
+.btn-accent {
+  background-color: $accent;
+  border-color: $accent;
+  color: #fff;
+  &:hover {
+    background-color: darken($accent, 10%);
+  }
+}
+
+// Cards
+.card {
+  border: none;
+  border-radius: $card-border-radius;
+  box-shadow: $card-box-shadow;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $box-shadow-lg;
+  }
+}
+
+// Navbar
+.navbar-brand {
+  font-family: $headings-font-family;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.navbar-nav .nav-link {
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+  &:hover {
+    color: $primary;
+  }
+}
+
+// Forms
+.form-control {
+  border-radius: $input-border-radius;
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba($primary, 0.25);
+  }
+}
+
+// Tables
+.table {
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+// Modals
+.modal-content {
+  border-radius: 1rem;
+  box-shadow: $box-shadow-lg;
+}
+
+// -------------------------------------
+// 6. Utility Classes (Custom Additions)
+// -------------------------------------
+
+.bg-soft-primary {
+  background-color: rgba($primary, 0.1);
+  color: $primary;
+}
+
+.bg-soft-accent {
+  background-color: rgba($accent, 0.1);
+  color: $accent;
+}
+
+.rounded-4 {
+  border-radius: 1rem !important;
+}
+
+.shadow-hover {
+  transition: all 0.3s ease;
+  &:hover {
+    box-shadow: $box-shadow-lg;
+  }
+}
+
+// -------------------------------------
+// 7. Hero Section Styling Example (Optional)
+// -------------------------------------
+
+.hero-section {
+  background: linear-gradient(135deg, $primary 0%, lighten($primary, 20%) 100%);
+  color: white;
+  padding: map-get($spacers, 5) 0;
+  text-align: center;
+  .btn {
+    margin-top: map-get($spacers, 3);
+  }
+}
