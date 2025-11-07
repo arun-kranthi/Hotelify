@@ -22,3 +22,60 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# =====================================
+# React + Node.js + Vite / CRA Project
+# =====================================
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production build
+/build
+/dist
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Windows + macOS junk
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Local config overrides
+/.eslintcache
+
+# lock files (optional if using only one package manager)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# sass cache
+.sass-cache
