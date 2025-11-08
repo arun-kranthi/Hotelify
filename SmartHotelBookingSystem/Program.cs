@@ -118,6 +118,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+//use CORS middleware
+app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
 
