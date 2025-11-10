@@ -8,5 +8,7 @@ namespace SmartHotelBookingSystem.Repository
         void AddPoints(int userId, int points);
         void RedeemPoints(int userId, int bookingId, int points, decimal discount);
 
+        void Update(LoyaltyAccount account);
+
     }
 }

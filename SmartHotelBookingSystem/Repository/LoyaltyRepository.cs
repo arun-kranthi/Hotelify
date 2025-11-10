@@ -57,5 +57,10 @@ namespace SmartHotelBookingSystem.Repository
             _context.LoyaltyAccounts.Update(account);
             _context.SaveChanges();
         }
+        public void Update(LoyaltyAccount account)
+        {
+            _context.LoyaltyAccounts.Update(account);
+            _context.SaveChanges();
+        }
     }
 }

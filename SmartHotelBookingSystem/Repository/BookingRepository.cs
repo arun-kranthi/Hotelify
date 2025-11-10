@@ -37,5 +37,16 @@ namespace SmartHotelBookingSystem.Repository
             _context.Bookings.Update(booking);
             await _context.SaveChangesAsync();
         }
+        public async Task<IEnumerable<Booking>> GetByUserIdAsync(int userId)
+        {
+            return await _context.Bookings
+                .Include(b => b.Room)
+                    .ThenInclude(r => r.Hotel) // Get the Hotel
+                .Include(b => b.Payment)
+                .Where(b => b.UserID == userId)
+                .OrderByDescending(b => b.CheckInDate)
+                .ToListAsync();
+            
+        }
     }
 }

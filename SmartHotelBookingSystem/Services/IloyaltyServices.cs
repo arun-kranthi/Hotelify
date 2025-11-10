@@ -7,5 +7,7 @@ namespace SmartHotelBookingSystem.Services
         LoyaltyAccount GetAccount(int userId);
         void AddPointsForBooking(int userId, int bookingId);
         void Redeem(int userId, int bookingId, int points);
+
+        decimal RedeemPointsForBooking(int userId, int pointsToRedeem);
     }
 }
