@@ -7,9 +7,9 @@ import Footer from '../components/common/Footer';
 const UserLayout = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      {/* 2. Use the new UserNavbar here */}
+      
       <UserNavbar /> 
-      <main style={{ flex: '1' }}>
+      <main style={{ flex: '1', paddingTop: '56px' }}>
         <Outlet />
       </main>
       <Footer />

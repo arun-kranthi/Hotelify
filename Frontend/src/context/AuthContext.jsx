@@ -39,9 +39,10 @@ export const AuthProvider = ({ children }) => {
     // **IMPORTANT**: Adjust these keys to match your JWT claims!
     const username = decodedToken.Name || decodedToken.sub || 'User';
     const userRoles = decodedToken.role || [];
+    const userId = decodedToken.sub;
     
     setToken(newToken);
-    setUser({ username }); // Store whatever user info you need
+    setUser({ id: userId, username: username });// Store whatever user info you need
     setRoles(Array.isArray(userRoles) ? userRoles : [userRoles]);
     setIsAuthenticated(true);
     localStorage.setItem('token', newToken);

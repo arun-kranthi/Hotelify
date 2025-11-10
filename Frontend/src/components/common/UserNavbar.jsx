@@ -13,6 +13,7 @@ const UserNavbar = () => {
         navbar navbar-expand-lg 
         ${theme === 'light' ? 'navbar-light bg-light' : 'navbar-dark bg-dark'} 
         shadow-sm
+        fixed-top
       `}
     >
       <div className="container">
