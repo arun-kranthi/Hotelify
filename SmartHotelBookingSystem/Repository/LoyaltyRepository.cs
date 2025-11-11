@@ -1,4 +1,4 @@
-﻿using SmartHotelBookingSystem.Data;
+using SmartHotelBookingSystem.Data;
 using SmartHotelBookingSystem.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -81,5 +81,11 @@ namespace SmartHotelBookingSystem.Repository
                 .Where(r => r.UserID == userId)
                 .ToListAsync();
         }
+        public void Update(LoyaltyAccount account)
+        {
+            _context.LoyaltyAccounts.Update(account);
+            _context.SaveChanges();
+        }
     }
 }
+

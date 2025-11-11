@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SmartHotelBookingSystem.DTO.module_2;
 using SmartHotelBookingSystem.Services.Module2_services;
 
-namespace SmartHoteBookingSystem.Controllers
+namespace SmartHotelBookingSystem.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -13,7 +13,7 @@ namespace SmartHoteBookingSystem.Controllers
         public HotelsController(IHotelService hotelService) => _hotelService = hotelService;
 
         [HttpGet]
-        
+        [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
             var hotels = await _hotelService.GetAllAsync();
@@ -21,7 +21,7 @@ namespace SmartHoteBookingSystem.Controllers
         }
 
         [HttpGet("{id:int}")]
-        
+        [AllowAnonymous]
         public async Task<IActionResult> Get(int id)
         {
             var hotel = await _hotelService.GetByIdAsync(id);
@@ -31,7 +31,7 @@ namespace SmartHoteBookingSystem.Controllers
 
         // Only admin or hotel manager can create hotels
         [HttpPost]
-        
+        [Authorize(Roles = "Admin, HotelManager")]
         public async Task<IActionResult> Create(HotelCreateDto dto)
         {
             var created = await _hotelService.CreateAsync(dto);
@@ -39,7 +39,7 @@ namespace SmartHoteBookingSystem.Controllers
         }
 
         [HttpPut("{id:int}")]
-        
+        [Authorize(Roles = "Admin, HotelManager")]
         public async Task<IActionResult> Update(int id, HotelUpdateDto dto)
         {
             await _hotelService.UpdateAsync(id, dto);
@@ -47,7 +47,7 @@ namespace SmartHoteBookingSystem.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             await _hotelService.DeleteAsync(id);

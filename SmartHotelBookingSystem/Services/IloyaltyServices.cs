@@ -1,4 +1,4 @@
-﻿using SmartHotelBookingSystem.DTO;
+using SmartHotelBookingSystem.DTO;
 using System.Threading.Tasks;
 
 namespace SmartHotelBookingSystem.Services
@@ -8,5 +8,7 @@ namespace SmartHotelBookingSystem.Services
         Task<LoyaltyAccountDto> GetAccountAsync(int userId);
         Task AddPointsForBookingAsync(int userId, int bookingId);
         Task<RedemptionResponseDto> RedeemAsync(int userId, int bookingId, int pointsUsed);
+        decimal RedeemPointsForBooking(int userId, int pointsToRedeem);
     }
 }
+

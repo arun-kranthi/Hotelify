@@ -1,4 +1,5 @@
-﻿using SmartHotelBookingSystem.Model;
+
+using SmartHotelBookingSystem.Model;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,5 +11,7 @@ namespace SmartHotelBookingSystem.Repository
         Task AddPointsAsync(int userId, int points);
         Task RedeemPointsAsync(int userId, int bookingId, int points, decimal discount);
         Task<List<Redemption>> GetRedemptionsByUserIdAsync(int userId);
+        void Update(LoyaltyAccount account);
     }
 }
+

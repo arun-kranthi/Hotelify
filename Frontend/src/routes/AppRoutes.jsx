@@ -25,6 +25,12 @@ import HotelList from '../pages/user/HotelList';
 import AdminDashboard from '../pages/admin/Dashboard';
 import ManagerDashboard from '../pages/manager/Dashboard';
 
+import HotelDetails from '../pages/user/HotelDetails';
+// We'll create this component later, just make a placeholder for now
+import BookingPage from '../pages/user/BookingPage';
+import PaymentPage from '../pages/user/PaymentPage';
+import MyBookingsPage from '../pages/user/MyBookingsPage';
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -53,6 +59,10 @@ const AppRoutes = () => {
           {/* Note: We add all roles here so admins/managers can also see user pages */}
           <Route path="/hotels" element={<HotelList />} />
           {/* Add other user routes here (e.g., /my-bookings, /profile) */}
+          <Route path="/hotels/:hotelId" element={<HotelDetails />} />
+          <Route path="/book/:hotelId" element={<BookingPage />} />
+          <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/my-bookings" element={<MyBookingsPage />} />
         </Route>
       </Route>
 

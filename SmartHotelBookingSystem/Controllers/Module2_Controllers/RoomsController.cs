@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SmartHotelBookingSystem.DTO.module_2.RoomDto;
 using SmartHotelBookingSystem.Services.Module2_services;
 
-namespace SmartHotel.Controllers
+namespace SmartHotelBookingSystem.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
