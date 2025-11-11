@@ -1,4 +1,5 @@
-﻿using SmartHotelBookingSystem.DTO;
+﻿using Microsoft.EntityFrameworkCore;
+using SmartHotelBookingSystem.DTO;
 using SmartHotelBookingSystem.Enums;
 using SmartHotelBookingSystem.Model;
 using SmartHotelBookingSystem.Repository;
@@ -12,11 +13,13 @@ namespace SmartHotelBookingSystem.Services
         private readonly IUserRepository _repo;
         private readonly IJwtTokenGenerator _tokenGen;
         private readonly PasswordHashing _passwordHashing;
-        public UserService(IUserRepository repo, IJwtTokenGenerator tokenGen,PasswordHashing passwordHashing)
+        private readonly ILoyaltyRepository _loyaltyRepository;
+        public UserService(IUserRepository repo, ILoyaltyRepository loyaltyRepo, IJwtTokenGenerator tokenGen,PasswordHashing passwordHashing)
         {
             _repo = repo;
             _tokenGen = tokenGen;
             _passwordHashing = passwordHashing;
+            _loyaltyRepository = loyaltyRepo;
         }
         
         public async Task<string> AuthenticateAsync(UserLoginDto loginDto)
@@ -61,6 +64,7 @@ namespace SmartHotelBookingSystem.Services
                 ContactNumber=createDto.ContactNumber,
             };
             await _repo.AddUserAsync(user);
+            _loyaltyRepository.AddPoints(user.UserID, 0);
             return new UserResponseDto
             {
                 UserID=user.UserID,
@@ -69,6 +73,7 @@ namespace SmartHotelBookingSystem.Services
                 Role=user.Role.ToString(),
                 ContactNumber=user.ContactNumber,
             };
+            
         }
         public async Task<bool> DeleteUserAsync(int id)
         {

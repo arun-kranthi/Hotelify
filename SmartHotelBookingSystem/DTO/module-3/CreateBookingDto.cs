@@ -12,5 +12,7 @@ namespace SmartHotelBookingSystem.DTO.module_3
         public DateTime CheckInDate { get; set; }
         [Required]
         public DateTime CheckOutDate { get; set; }
+
+        public int PointsToRedeem { get; set; } = 0;
     }
 }

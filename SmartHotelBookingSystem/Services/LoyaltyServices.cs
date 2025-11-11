@@ -1,30 +1,69 @@
-﻿using SmartHotelBookingSystem.Model;
+using AutoMapper;
+using SmartHotelBookingSystem.DTO;
+using SmartHotelBookingSystem.Model;
 using SmartHotelBookingSystem.Repository;
+using System.Threading.Tasks;
 
 namespace SmartHotelBookingSystem.Services
 {
     public class LoyaltyServices : IloyaltyServices
     {
         private readonly ILoyaltyRepository _repo;
-        public LoyaltyServices(ILoyaltyRepository repo)
+        private readonly IMapper _mapper;
+
+        public LoyaltyServices(ILoyaltyRepository repo, IMapper mapper)
         {
             _repo = repo;
+            _mapper = mapper;
         }
 
-        public void AddPointsForBooking(int userId, int bookingId)
+        public async Task AddPointsForBookingAsync(int userId, int bookingId)
         {
-            _repo.AddPoints(userId,10);
+            await _repo.AddPointsAsync(userId, 10);
         }
 
-        public LoyaltyAccount GetAccount(int userId)
+        public async Task<LoyaltyAccountDto> GetAccountAsync(int userId)
         {
-            return _repo.GetByUserId(userId);
+            var account = await _repo.GetByUserIdAsync(userId);
+            return account == null ? null : _mapper.Map<LoyaltyAccountDto>(account);
         }
 
-        public void Redeem(int userId, int bookingId, int points)
+        public async Task<RedemptionResponseDto> RedeemAsync(int userId, int bookingId, int pointsUsed)
         {
-            decimal discount = points * 1m;
-            _repo.RedeemPoints(userId, bookingId, points, discount);
+            decimal discount = pointsUsed * 1m;
+            await _repo.RedeemPointsAsync(userId, bookingId, pointsUsed, discount);
+
+            return new RedemptionResponseDto
+            {
+                UserId = userId,
+                BookingID = bookingId,
+                PointsUsed = pointsUsed,
+                DiscountAmount = discount
+            };
+        }
+        public decimal RedeemPointsForBooking(int userId, int pointsToRedeem)
+        {
+            if (pointsToRedeem <= 0)
+            {
+                return 0; // No points to redeem
+            }
+
+            var account = _repo.GetByUserId(userId);
+
+            if (account == null || account.PointsBalance < pointsToRedeem)
+            {
+                throw new Exception("Not enough loyalty points.");
+            }
+
+            // Your logic: 1 point = 1 unit of currency
+            decimal discount = pointsToRedeem * 1m;
+
+            // Deduct the points
+            account.PointsBalance -= pointsToRedeem;
+            _repo.Update(account); // You will need to add an 'Update' method to your repository
+
+            return discount;
         }
     }
 }
+

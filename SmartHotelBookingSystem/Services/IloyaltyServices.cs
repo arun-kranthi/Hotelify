@@ -1,11 +1,14 @@
-﻿using SmartHotelBookingSystem.Model;
+using SmartHotelBookingSystem.DTO;
+using System.Threading.Tasks;
 
 namespace SmartHotelBookingSystem.Services
 {
     public interface IloyaltyServices
     {
-        LoyaltyAccount GetAccount(int userId);
-        void AddPointsForBooking(int userId, int bookingId);
-        void Redeem(int userId, int bookingId, int points);
+        Task<LoyaltyAccountDto> GetAccountAsync(int userId);
+        Task AddPointsForBookingAsync(int userId, int bookingId);
+        Task<RedemptionResponseDto> RedeemAsync(int userId, int bookingId, int pointsUsed);
+        decimal RedeemPointsForBooking(int userId, int pointsToRedeem);
     }
 }
+

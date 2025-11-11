@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmartHotelBookingSystem.DTO.module_3;
 using SmartHotelBookingSystem.Services;
+using System.Security.Claims;
 
 namespace SmartHotelBookingSystem.Controllers
 {
@@ -29,22 +30,24 @@ namespace SmartHotelBookingSystem.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            try
-            {
-                var result = await _bookingService.GetBookingAsync(id);
-                return Ok(result);
-            }
-            catch
-            {
-                return NotFound("Booking not found");
-            }
-            
+            var result = await _bookingService.GetBookingAsync(id);
+            return Ok(result);
         }
         [HttpPut("{id}/cancel")]
         public async Task<IActionResult> Cancel(int id)
         {
             await _bookingService.CancelBookingAsync(id);
             return NoContent();
+        }
+
+        [HttpGet("mybookings")]
+        public async Task<IActionResult> GetMyBookings()
+        {
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = int.Parse(userIdString);
+
+            var result = await _bookingService.GetBookingsByUserIdAsync(userId);
+            return Ok(result);
         }
     }
 }
