@@ -74,7 +74,7 @@ namespace SmartHotelBookingSystem.Services
                 // Call our new loyalty service method
                 // (Assuming your UserID in the DTO can be parsed to int)
                 int userId = dto.UserID;
-                decimal discount = _loyaltyService.RedeemPointsForBooking(userId, dto.PointsToRedeem);
+                decimal discount = await _loyaltyService.RedeemPointsForBooking(userId, dto.PointsToRedeem);
 
                 // 5. Calculate final price
                 decimal finalTotal = originalTotal - discount;
@@ -114,7 +114,7 @@ namespace SmartHotelBookingSystem.Services
 
                 // 9. --- (OPTIONAL) ADD POINTS FOR THIS BOOKING ---
                 // Instead of a separate API call, why not grant points now?
-                _loyaltyService.AddPointsForBooking(userId, booking.BookingID);
+                await _loyaltyService.AddPointsForBookingAsync(userId, booking.BookingID);
 
                 // 10. Commit the transaction
                 await transaction.CommitAsync();

@@ -64,7 +64,7 @@ namespace SmartHotelBookingSystem.Services
                 ContactNumber=createDto.ContactNumber,
             };
             await _repo.AddUserAsync(user);
-            _loyaltyRepository.AddPoints(user.UserID, 0);
+            await _loyaltyRepository.AddPointsAsync(user.UserID, 0);
             return new UserResponseDto
             {
                 UserID=user.UserID,
