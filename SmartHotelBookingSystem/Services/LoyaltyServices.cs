@@ -41,14 +41,14 @@ namespace SmartHotelBookingSystem.Services
                 DiscountAmount = discount
             };
         }
-        public decimal RedeemPointsForBooking(int userId, int pointsToRedeem)
+        public async Task<decimal> RedeemPointsForBooking(int userId, int pointsToRedeem)
         {
             if (pointsToRedeem <= 0)
             {
                 return 0; // No points to redeem
             }
 
-            var account = _repo.GetByUserId(userId);
+            var account = await _repo.GetByUserIdAsync(userId);
 
             if (account == null || account.PointsBalance < pointsToRedeem)
             {
@@ -60,7 +60,7 @@ namespace SmartHotelBookingSystem.Services
 
             // Deduct the points
             account.PointsBalance -= pointsToRedeem;
-            _repo.Update(account); // You will need to add an 'Update' method to your repository
+            _repo.Update(account); 
 
             return discount;
         }
