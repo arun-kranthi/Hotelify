@@ -1,43 +1,44 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SmartHotelBookingSystem.DTO;
 using SmartHotelBookingSystem.Services;
+using System.Threading.Tasks;
 
 namespace SmartHotelBookingSystem.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class LoyaltyController:ControllerBase
+    public class LoyaltyController : ControllerBase
     {
         private readonly IloyaltyServices _service;
-        private readonly IMapper _mapper;
-        public LoyaltyController(IloyaltyServices service,IMapper mapper)
+
+        public LoyaltyController(IloyaltyServices service)
         {
             _service = service;
-            _mapper = mapper;
         }
+
         [HttpGet("{userId}/points")]
-        public IActionResult GetPoints(int userId)
+        public async Task<IActionResult> GetPoints(int userId)
         {
-            var account = _service.GetAccount(userId);
+            var account = await _service.GetAccountAsync(userId);
             if (account == null)
             {
                 return NotFound("Loyalty account not found.");
             }
-            var dto = _mapper.Map<LoyaltyAccountDto>(account);
-            return Ok(dto);
+            return Ok(account);
         }
+
         [HttpPost("{userId}/booking/{bookingId}")]
-        public IActionResult AddPoints(int userId, int bookingId)
+        public async Task<IActionResult> AddPoints(int userId, int bookingId)
         {
-            _service.AddPointsForBooking(userId, bookingId);
+            await _service.AddPointsForBookingAsync(userId, bookingId);
             return Ok("Points added for booking.");
         }
+
         [HttpPost("{userId}/redeem/{bookingId}")]
-        public IActionResult RedeemPoints(int userId, int bookingId, [FromBody] RedemptionDto dto)
+        public async Task<IActionResult> RedeemPoints(int userId, int bookingId, [FromBody] RedemptionRequestDto dto)
         {
-            _service.Redeem(userId, bookingId, dto.PointsUsed);
-            return Ok("Points redeemed successfully.");
+            var result = await _service.RedeemAsync(userId, bookingId, dto.PointsUsed);
+            return Ok(result);
         }
     }
 }
