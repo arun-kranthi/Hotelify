@@ -24,10 +24,6 @@ export const createBooking = (axiosPrivate, bookingData) => {
  * @param {object} axiosPrivate - The authenticated axios instance.
  * @param {number} bookingId - The ID of the booking to cancel.
  */
-export const cancelBooking = (axiosPrivate, bookingId) => {
-  // [HttpPut("{id}/cancel")] endpoint
-  return axiosPrivate.put(`/bookings/${bookingId}/cancel`);
-};
 
 // bookingApi.js
 export const getBookingsByManager = (axiosPrivate, managerId) => {
