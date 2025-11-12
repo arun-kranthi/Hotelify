@@ -53,5 +53,25 @@ namespace SmartHotelBookingSystem.Controllers
             await _hotelService.DeleteAsync(id);
             return NoContent();
         }
+        [HttpGet("manager/{managerId}")]
+        [Authorize(Roles = "HotelManager")]
+        public async Task<IActionResult> GetHotelsByManager(string managerId)
+        {
+            if (string.IsNullOrEmpty(managerId))
+            {
+                return BadRequest("Manager ID must be provided.");
+            }
+
+            var hotels = await _hotelService.GetHotelsByManagerAsync(managerId);
+
+            if (hotels == null || !hotels.Any())
+            {
+                return NotFound("No hotels found for this manager.");
+            }
+
+            return Ok(hotels);
+        }
+
+
     }
 }

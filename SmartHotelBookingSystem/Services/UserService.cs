@@ -104,5 +104,19 @@ namespace SmartHotelBookingSystem.Services
                 ContactNumber = user.ContactNumber
             };
         }
+        public async Task<IEnumerable<UserResponseDto>> GetManagersAsync()
+        {
+            var managers = await _repo.GetUsersByRoleAsync(UserRole.HotelManager);
+
+            return managers.Select(u => new UserResponseDto
+            {
+                UserID = u.UserID,
+                Name = u.Name,
+                Email = u.Email,
+                Role = u.Role.ToString(),
+                ContactNumber = u.ContactNumber
+            });
+        }
+
     }
 }

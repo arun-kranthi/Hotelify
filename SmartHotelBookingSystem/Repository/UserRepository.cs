@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmartHotelBookingSystem.Data;
+using SmartHotelBookingSystem.Enums;
 using SmartHotelBookingSystem.Model;
 
 namespace SmartHotelBookingSystem.Repository
@@ -48,5 +49,12 @@ namespace SmartHotelBookingSystem.Repository
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
         }
+        public async Task<IEnumerable<User>> GetUsersByRoleAsync(UserRole role)
+        {
+            return await _context.Users
+                .Where(u => u.Role == role)
+                .ToListAsync();
+        }
+
     }
 }

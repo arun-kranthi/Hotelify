@@ -10,5 +10,6 @@ namespace SmartHotelBookingSystem.Services
         Task<IEnumerable<UserResponseDto>> GetAllUsersAsync();
         Task<bool> DeleteUserAsync(int id);
         Task<UserResponseDto> UpdateUserAsync(int id, UserUpdateDto updateDto);
+        Task<IEnumerable<UserResponseDto>> GetManagersAsync();
     }
 }

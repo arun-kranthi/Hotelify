@@ -49,5 +49,12 @@ namespace SmartHotelBookingSystem.Controllers
             var result = await _bookingService.GetBookingsByUserIdAsync(userId);
             return Ok(result);
         }
+        [HttpGet("all/{managerId}")]
+        public async Task<IActionResult> GetAllBookings(string managerId)
+        {
+            var result = await _bookingService.GetBookingsForManagerAsync(managerId);
+            return Ok(result);
+        }
+
     }
 }

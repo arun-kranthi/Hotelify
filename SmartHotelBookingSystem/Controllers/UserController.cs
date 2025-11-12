@@ -55,6 +55,12 @@ namespace SmartHotelBookingSystem.Controllers
             }
             return Ok("Delete Successful");
         }
-
+        [HttpGet("managers")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetManagers()
+        {
+            var managers = await _userService.GetManagersAsync();
+            return Ok(managers);
+        }
     }
 }

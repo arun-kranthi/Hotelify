@@ -4,8 +4,6 @@
  * @returns {Promise<object>} The API response.
  */
 export const getAllHotels = (axiosPrivate) => {
-  // This will make a GET request to:
-  // [your_base_url]/api/hotels
   return axiosPrivate.get('/Hotels');
 };
 
@@ -17,4 +15,11 @@ export const getAllHotels = (axiosPrivate) => {
  */
 export const getHotelById = (axiosPrivate, hotelId) => {
   return axiosPrivate.get(`/Hotels/${hotelId}`);
+};
+
+// hotelApi.js
+export const getHotelsByManager = async (axiosPrivate, managerId) => {
+    if (!managerId) throw new Error("managerId is required");
+    const response = await axiosPrivate.get(`/hotels/manager/${managerId}`);
+    return response.data;
 };

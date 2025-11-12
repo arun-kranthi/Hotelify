@@ -1,4 +1,4 @@
-// This file will hold all API calls for creating and viewing bookings
+﻿// This file will hold all API calls for creating and viewing bookings
 // e.g., export const createBooking = (axiosPrivate, bookingData) => { ... }
 // e.g., export const getMyBookings = (axiosPrivate) => { ... }
 /**
@@ -18,4 +18,12 @@ export const getMyBookings = (axiosPrivate) => {
  */
 export const createBooking = (axiosPrivate, bookingData) => {
   return axiosPrivate.post('/bookings', bookingData);
+};
+
+// bookingApi.js
+export const getBookingsByManager = (axiosPrivate, managerId) => {
+    return axiosPrivate.get(`/Bookings/all/${managerId}`);
+};
+export const cancelBooking = async (axiosPrivate, bookingId) => {
+    return await axiosPrivate.put(`/Bookings/${bookingId}/cancel`);
 };

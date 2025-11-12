@@ -61,10 +61,21 @@ namespace SmartHotelBookingSystem.Services.Module2_services
             _repository.Remove(hotel);
             await _repository.SaveChangesAsync();
         }
+        public async Task<IEnumerable<HotelReadDto>> GetHotelsByManagerAsync(string managerId)
+        {
+            var hotels = await _repository.GetHotelsByManagerAsync(managerId);
 
-       
-        
-        
-        
+            // Map entity → DTO
+            return hotels.Select(h => new HotelReadDto
+            {
+                HotelID = h.HotelID,
+                Name = h.Name,
+                Location = h.Location,
+                ManagerId = h.ManagerId.ToString(),
+                Amenities = h.Amenities,
+                Rating = h.Rating
+            });
+        }
+
     }
 }
