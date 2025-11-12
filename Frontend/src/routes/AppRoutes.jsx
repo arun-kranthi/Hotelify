@@ -32,6 +32,7 @@ import ManageRooms from '../pages/manager/ManageRooms';
 import BookingPage from '../pages/user/BookingPage';
 import PaymentPage from '../pages/user/PaymentPage';
 import MyBookingsPage from '../pages/user/MyBookingsPage';
+import ProfilePage from '../pages/user/Profile.jsx';
 import ViewBookings from '../pages/manager/ViewBookings';
 
 const AppRoutes = () => {
@@ -66,6 +67,7 @@ const AppRoutes = () => {
           <Route path="/book/:hotelId" element={<BookingPage />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/my-bookings" element={<MyBookingsPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
 
         </Route>
       </Route>

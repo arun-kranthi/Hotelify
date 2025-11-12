@@ -5,10 +5,10 @@ import { useTheme } from '../../context/ThemeContext';
 
 const DashboardNavbar = () => {
   const { theme, toggleTheme } = useTheme();
-  // 1. Get auth data
+  // Get auth data
   const { user, logout, roles } = useAuth();
 
-  // 2. Determine the correct "home" link for the brand icon
+  // Determine the correct "home" link for the brand icon
   const getHomeLink = () => {
     if (roles.includes('Admin')) return '/admin/dashboard';
     if (roles.includes('HotelManager')) return '/manager/dashboard';
@@ -25,7 +25,7 @@ const DashboardNavbar = () => {
       `}
     >
       <div className="container">
-        {/* 3. Use the dynamic home link */}
+        {/* Use the dynamic home link */}
         <Link className="navbar-brand fw-bold" to={getHomeLink()}>
           <i className="bi bi-building"></i> Hotelify (Admin)
         </Link>
