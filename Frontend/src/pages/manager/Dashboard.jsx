@@ -6,6 +6,7 @@ const ManagerDashboard = () => {
   const axiosPrivate = useAdminAxios();
   const [managerName, setManagerName] = useState('');
 
+
   return (
     <div className="container my-5">
       
@@ -38,3 +39,4 @@ const ManagerDashboard = () => {
 };
 
 export default ManagerDashboard;
+
