@@ -50,8 +50,49 @@ namespace SmartHotelBookingSystem.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _hotelService.DeleteAsync(id);
-            return NoContent();
+            try
+            {
+                var success = await _hotelService.DeleteAsync(id);
+
+                if (!success)
+                    return NotFound(new { message = "Hotel not found." });
+
+                return Ok(new { message = "Hotel deleted successfully." });
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Business rule violation: hotel has active bookings
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, new { message = "An unexpected error occurred while deleting the hotel." });
+            }
         }
+
+        [HttpGet("manager/{managerId}")]
+        [Authorize(Roles = "HotelManager")]
+        public async Task<IActionResult> GetHotelsByManager(string managerId)
+        {
+            if (string.IsNullOrEmpty(managerId))
+            {
+                return BadRequest("Manager ID must be provided.");
+            }
+
+            var hotels = await _hotelService.GetHotelsByManagerAsync(managerId);
+
+            if (hotels == null || !hotels.Any())
+            {
+                return NotFound("No hotels found for this manager.");
+            }
+
+            return Ok(hotels);
+        }
+
+
     }
 }

@@ -1,12 +1,12 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 
-// Create the context
+// Creating the context
 const ThemeContext = createContext();
 
-// Create a custom hook to use the context
+// Creating a custom hook to use the context
 export const useTheme = () => useContext(ThemeContext);
 
-// Create the provider component
+// the provider component
 export const ThemeProvider = ({ children }) => {
   // State to hold the current theme
   const [theme, setTheme] = useState('light');

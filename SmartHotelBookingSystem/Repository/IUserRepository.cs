@@ -1,4 +1,5 @@
-﻿using SmartHotelBookingSystem.Model;
+﻿using SmartHotelBookingSystem.Enums;
+using SmartHotelBookingSystem.Model;
 
 namespace SmartHotelBookingSystem.Repository
 {
@@ -10,5 +11,6 @@ namespace SmartHotelBookingSystem.Repository
         Task<User>  GetUserByIdAsync(int id);
         Task<User> GetUserByEmailAsync(string email);
         Task<IEnumerable<User>> GetAllUsersAsync();
+        Task<IEnumerable<User>> GetUsersByRoleAsync(UserRole role);
     }
 }

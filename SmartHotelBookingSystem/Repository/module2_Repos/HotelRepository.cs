@@ -94,5 +94,12 @@ namespace SmartHotelBookingSystem.Repository.module2_Repos
         {
             return _db.SaveChangesAsync();
         }
+        public async Task<IEnumerable<Hotel>> GetHotelsByManagerAsync(string managerId)
+        {
+            return await _db.Hotels
+                .Where(h => h.ManagerId.ToString().Equals(managerId))
+                .ToListAsync();
+        }
     }
+
 }

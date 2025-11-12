@@ -10,5 +10,6 @@ namespace SmartHotelBookingSystem.Repository
         Task<bool> IsRoomAvailableAsync(int rooomId, DateTime checkIn, DateTime checkOut);
 
         Task<IEnumerable<Booking>> GetByUserIdAsync(int userId);
+        Task<IEnumerable<Booking>> GetBookingsByManagerAsync(string managerId);
     }
 }

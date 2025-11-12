@@ -17,11 +17,12 @@ const Signup = () => {
     setLoading(true);
 
     const userData = {
-      username,
+      Name:username,
       email,
       password,
-      contactNumber, // <-- 2. ADDED TO USER DATA
-      role: 'User' // Default role for signup
+      role: 'User',
+      contactNumber // <-- 2. ADDED TO USER DATA
+       // Default role for signup
     };
 
     try {
@@ -45,7 +46,7 @@ const Signup = () => {
           
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="username" className="form-label">Username</label>
+              <label htmlFor="username" className="form-label">Name</label>
               <input
                 type="text"
                 className="form-control"

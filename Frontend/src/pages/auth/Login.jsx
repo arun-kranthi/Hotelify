@@ -1,36 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext.jsx';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 
 const Login = () => {
-  const [email, setEmail] = useState(''); // <-- CHANGED
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
   
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
+  // --- 1. GET THE MESSAGE FROM NAVIGATION STATE ---
+  const [successMessage, setSuccessMessage] = useState(location.state?.message);
+
+  // --- 2. CLEAR THE LOCATION STATE ---
+  // This useEffect runs once to clear the message from history,
+  // so it doesn't show up again if you navigate away and come back.
+  useEffect(() => {
+    if (location.state?.message) {
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
+
+  const [loading, setLoading] = useState(false);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setSuccessMessage(''); // --- 3. CLEAR SUCCESS ON NEW ATTEMPT ---
     setLoading(true);
 
     try {
-      // 1. Call the login function with email
-      const roles = await login(email, password); // <-- CHANGED
+      const roles = await login(email, password);
       
-      // 2. Role-based navigation
       if (roles.includes('Admin')) {
         navigate('/admin/dashboard');
-      } else if (roles.includes('HotelManager')) { // Match your backend role name
+      } else if (roles.includes('HotelManager')) {
         navigate('/manager/dashboard');
       } else {
-        navigate('/hotels'); // Default page for 'User'
+        navigate('/hotels');
       }
 
     } catch (err) {
-      setError('Invalid email or password. Please try again.'); // <-- CHANGED
+      setError('Invalid email or password. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -42,10 +55,11 @@ const Login = () => {
         <div className="card-body p-5">
           <h2 className="card-title text-center fw-bold mb-4">Login to Hotelify</h2>
           
+          {/* --- 4. RENDER MESSAGES --- */}
           {error && <div className="alert alert-danger">{error}</div>}
+          {successMessage && <div className="alert alert-success">{successMessage}</div>}
           
           <form onSubmit={handleSubmit}>
-            {/* --- CHANGED THIS BLOCK --- */}
             <div className="mb-3">
               <label htmlFor="email" className="form-label">Email</label>
               <input
@@ -57,7 +71,6 @@ const Login = () => {
                 required
               />
             </div>
-            {/* --- END OF CHANGE --- */}
             <div className="mb-3">
               <label htmlFor="password" className="form-label">Password</label>
               <input

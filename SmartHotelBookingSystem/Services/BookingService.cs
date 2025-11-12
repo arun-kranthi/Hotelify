@@ -74,7 +74,7 @@ namespace SmartHotelBookingSystem.Services
                 // Call our new loyalty service method
                 // (Assuming your UserID in the DTO can be parsed to int)
                 int userId = dto.UserID;
-                decimal discount = _loyaltyService.RedeemPointsForBooking(userId, dto.PointsToRedeem);
+                decimal discount = await _loyaltyService.RedeemPointsForBooking(userId, dto.PointsToRedeem);
 
                 // 5. Calculate final price
                 decimal finalTotal = originalTotal - discount;
@@ -114,7 +114,7 @@ namespace SmartHotelBookingSystem.Services
 
                 // 9. --- (OPTIONAL) ADD POINTS FOR THIS BOOKING ---
                 // Instead of a separate API call, why not grant points now?
-                _loyaltyService.AddPointsForBooking(userId, booking.BookingID);
+                await _loyaltyService.AddPointsForBookingAsync(userId, booking.BookingID);
 
                 // 10. Commit the transaction
                 await transaction.CommitAsync();
@@ -174,6 +174,21 @@ namespace SmartHotelBookingSystem.Services
                 HotelName = b.Room.Hotel?.Name ?? "Unknown Hotel",
                 RoomType = b.Room?.Type ?? "Unknown Room",
                 TotalAmount = b.Payment?.Amount ?? 0
+            });
+        }
+        public async Task<IEnumerable<BookingResponseDtoManager>> GetBookingsForManagerAsync(string managerId)
+        {
+            var bookings = await _bookingRepo.GetBookingsByManagerAsync(managerId);
+
+            return bookings.Select(b => new BookingResponseDtoManager
+            {
+                BookingID = b.BookingID,
+                Status = b.Status,
+                TotalAmount = b.Payment?.Amount ?? 0,
+                CheckInDate = b.CheckInDate,
+                CheckOutDate = b.CheckOutDate,
+                UserFullName = b.User?.Name ?? "N/A",   
+                RoomNumber = b.Room?.RoomID.ToString() ?? "N/A" 
             });
         }
     }

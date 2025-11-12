@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 
 const HotelCard = ({ hotel, imageUrl }) => {
   return (
-    // 1. Wrap the entire card in a Link.
-    // We add classes to remove the link's underline and blue color.
+    // Wrap the entire card in a Link.
+
     <Link 
       to={`/hotels/${hotel.hotelID}`} 
       className="text-decoration-none text-reset d-block h-100"
     >
-      {/* 2. Add transition and hover effects to the card */}
+      {/* Add transition and hover effects to the card */}
       <div 
         className="card h-100 shadow-sm" 
         style={{ transition: 'transform 0.2s ease, box-shadow 0.2s ease' }}
@@ -38,7 +38,6 @@ const HotelCard = ({ hotel, imageUrl }) => {
           
           <p className="card-text">{hotel.amenities?.substring(0, 80)}...</p>
           
-          {/* 3. The "View Details" button has been removed */}
         </div>
       </div>
     </Link>

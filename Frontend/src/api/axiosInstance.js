@@ -1,11 +1,9 @@
 import axios from 'axios';
 
-// =================================================================
-// REPLACE WITH YOUR ACTUAL BACKEND URL
-// =================================================================
-const BASE_URL = 'https://localhost:7046/api'; // Or whatever your .NET API port is
+// OUR ACTUAL BACKEND URL
+const BASE_URL = 'https://localhost:7046/api'; 
 
-// This is your PUBLIC axios instance (used for login, register, etc.)
+// This is PUBLIC axios instance (used for login, register, etc.)
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -13,8 +11,8 @@ export const axiosInstance = axios.create({
   }
 });
 
-// This is your PRIVATE axios instance (used for auth-required calls)
-// We will create its interceptors later in useAxiosPrivate.js
+// This is PRIVATE axios instance (used for auth-required calls)
+// will create its interceptors later in useAxiosPrivate.js
 export const axiosPrivate = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -22,5 +20,5 @@ export const axiosPrivate = axios.create({
   }
 });
 
-// By default, just export the public one for now
+// By default, just exporting the public one
 export default axiosInstance;

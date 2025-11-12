@@ -5,7 +5,7 @@
  */
 export const getAllHotels = (axiosPrivate) => {
   // This will make a GET request to:
-  // [your_base_url]/api/hotels
+  // [base_url]/api/hotels
   return axiosPrivate.get('/Hotels');
 };
 
@@ -13,8 +13,14 @@ export const getAllHotels = (axiosPrivate) => {
  * Fetches a single hotel by its ID.
  * @param {object} axiosPrivate - The authenticated axios instance.
  * @param {string} hotelId - The ID of the hotel to fetch.
- * OFA_REMOVED_COMMENT
  */
 export const getHotelById = (axiosPrivate, hotelId) => {
   return axiosPrivate.get(`/Hotels/${hotelId}`);
+};
+
+// hotelApi.js
+export const getHotelsByManager = async (axiosPrivate, managerId) => {
+    if (!managerId) throw new Error("managerId is required");
+    const response = await axiosPrivate.get(`/hotels/manager/${managerId}`);
+    return response.data;
 };
