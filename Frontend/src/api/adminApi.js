@@ -23,13 +23,13 @@ export const getAllUsers = async (axiosPrivate) => {
 };
 
 // Update user
-export const updateUserById = async (axiosPrivate, id, updatedData) => {
+export const updateUserById = async (id, updatedData) => {
     const response = await axiosPrivate.put(`/User/update-admin-only/${id}`, updatedData);
     return response.data;
 };
 
 // Delete user
-export const deleteUserById = async (axiosPrivate, id) => {
+export const deleteUserById = async (id) => {
     const response = await axiosPrivate.delete(`/User/delete-admin-only/${id}`);
     return response.data;
 };

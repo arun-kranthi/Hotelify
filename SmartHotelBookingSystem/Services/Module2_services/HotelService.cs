@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using SmartHotelBookingSystem.Data;
 using SmartHotelBookingSystem.DTO.module_2;
 using SmartHotelBookingSystem.Model;
 using SmartHotelBookingSystem.Repository.module2_Repos;
@@ -9,12 +11,14 @@ namespace SmartHotelBookingSystem.Services.Module2_services
     public class HotelService : IHotelService
     {
         private readonly IHotelRepository _repository;
+        private readonly BookingDBContext _context;
        
         private readonly IMapper _mapper;
-        public HotelService(IHotelRepository repository, IMapper mapper)
+        public HotelService(IHotelRepository repository, IMapper mapper, BookingDBContext context)
         {
             _repository = repository;
             _mapper = mapper;
+            _context = context;
         }
 
         public async Task<IEnumerable<HotelReadDto>> GetAllAsync()
@@ -49,18 +53,30 @@ namespace SmartHotelBookingSystem.Services.Module2_services
                 _repository.Update(hotel);
                  await _repository.SaveChangesAsync();
         }
-         
 
-        public async Task DeleteAsync(int id)
+
+        public async Task<bool> DeleteAsync(int id)
         {
-            var hotel= await _repository.GetByIdAsync(id);
-            if(hotel == null)
-            {
-                throw new KeyNotFoundException($"Hotel Not Found");
-            }
-            _repository.Remove(hotel);
-            await _repository.SaveChangesAsync();
+            var hotel = await _context.Hotels
+                .Include(h => h.Rooms)
+                .FirstOrDefaultAsync(h => h.HotelID == id);
+
+            if (hotel == null)
+                throw new KeyNotFoundException("Hotel not found.");
+
+            // Check if any of the hotel's rooms have bookings
+            var hasBookings = await _context.Bookings
+                .AnyAsync(b => hotel.Rooms.Select(r => r.RoomID).Contains(b.RoomID));
+
+            if (hasBookings)
+                throw new InvalidOperationException("This hotel has existing bookings and cannot be deleted.");
+
+            _context.Hotels.Remove(hotel);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
+
         public async Task<IEnumerable<HotelReadDto>> GetHotelsByManagerAsync(string managerId)
         {
             var hotels = await _repository.GetHotelsByManagerAsync(managerId);

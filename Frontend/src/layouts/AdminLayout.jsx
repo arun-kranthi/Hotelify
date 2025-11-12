@@ -34,11 +34,6 @@ const AdminLayout = () => {
                     Manage Hotels
                   </NavLink>
                 </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/admin/reports">
-                    Reports
-                  </NavLink>
-                </li>
               </ul>
             </div>
           </nav>

@@ -24,16 +24,24 @@ const ManageUsers = () => {
     }, []);
 
     const handleDelete = async (id) => {
-        if (window.confirm('Are you sure you want to delete this user?')) {
-            try {
-                await deleteUserById(id);
-                fetchUsers(); // Refresh list
-            } catch (err) {
-                console.error('Delete error:', err);
-                alert('Failed to delete user.');
+    if (window.confirm('Are you sure you want to delete this user?')) {
+        try {
+            await deleteUserById(id);
+            fetchUsers(); // Refresh list
+        } catch (err) {
+            console.error('Delete error:', err);
+
+            const backendMessage = err.response?.data?.message || err.message;
+
+            if (backendMessage.includes("active loyalty account")) {
+                alert("This user has a linked loyalty account and cannot be deleted.");
+            } else {
+                alert("Failed to delete user.");
             }
         }
-    };
+    }
+};
+
 
     const handleEdit = (user) => {
         setEditingUser(user);

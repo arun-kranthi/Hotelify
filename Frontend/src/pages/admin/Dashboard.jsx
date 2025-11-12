@@ -4,7 +4,7 @@ const Dashboard = () => {
     return (
         <div className="container my-5">
             <h1 className="mb-4">Welcome, Admin</h1>
-            <p className="lead">Use the sidebar to manage users, hotels, and view reports.</p>
+            <p className="lead">Use the sidebar to manage users and hotels.</p>
             <div className="row mt-4">
                 <div className="col-md-4">
                     <div className="card shadow-sm">
@@ -14,20 +14,19 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-4">
                     <div className="card shadow-sm">
                         <div className="card-body">
-                            <h5 className="card-title">Manage Hotel Managers</h5>
-                            <p className="card-text">Assign hotel managers and oversee their access and permissions.</p>
-                            <a href="/admin/manage-managers" className="btn btn-outline-primary">Go to Managers</a>
+                            <h5 className="card-title">Hotels</h5>
+                            <p className="card-text">Create Modify and delete the hotels</p>
                         </div>
                     </div>
                 </div>
                 <div className="col-md-4">
                     <div className="card shadow-sm">
                         <div className="card-body">
-                            <h5 className="card-title">Reports</h5>
-                            <p className="card-text">View system usage and booking statistics.</p>
+                            <h5 className="card-title">HotelManagers</h5>
+                            <p className="card-text">Create the Hotel Manager and Assign Hotel to them.</p>
                         </div>
                     </div>
                 </div>

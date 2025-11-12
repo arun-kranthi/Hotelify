@@ -34,11 +34,6 @@ const ManagerLayout = () => {
                     View Bookings
                   </NavLink>
                 </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/manager/hotel-info">
-                    Hotel Info
-                  </NavLink>
-                </li>
               </ul>
             </div>
           </nav>

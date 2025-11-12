@@ -124,24 +124,31 @@ const ManageHotels = () => {
     };
 
     const handleDeleteHotel = async (id) => {
-        try {
-            const hotel = await getHotelById(axiosPrivate, id);
+    if (!window.confirm("Are you sure you want to delete this hotel?")) {
+        return;
+    }
 
-            if (hotel.bookings && hotel.bookings.length > 0) {
-                alert("This hotel has existing bookings and cannot be deleted.");
-                return;
-            }
+    try {
+        await deleteHotel(axiosPrivate, id);
+        setMessage("Hotel deleted successfully!");
+        fetchHotels();
+    } catch (err) {
+        console.error("Delete hotel error:", err);
 
-            if (window.confirm("Are you sure you want to delete this hotel?")) {
-                await deleteHotel(axiosPrivate, id);
-                setMessage("Hotel deleted successfully!");
-                fetchHotels();
-            }
-        } catch (err) {
-            console.error("Delete hotel error:", err);
-            setMessage("Failed to delete hotel.");
+        const backendMessage = err.response?.data?.message || "Failed to delete hotel.";
+
+        if (backendMessage.includes("existing bookings")) {
+            alert("This hotel has existing bookings and cannot be deleted.");
+        } else if (backendMessage.includes("Hotel not found")) {
+            alert("Hotel not found.");
+        } else {
+            alert(backendMessage);
         }
-    };
+
+        setMessage(backendMessage);
+    }
+};
+
 
     const startEditingHotel = (hotel) => {
         setEditingHotel(hotel);
