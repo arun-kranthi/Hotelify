@@ -1,0 +1,19 @@
+.star-rating {
+  display: flex;
+  gap: 0.25rem;
+  font-size: 2rem; 
+  justify-content: center;
+}
+
+.star-rating .star {
+  cursor: pointer;
+  color: #e4e5e9;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+.star-rating .star.on {
+  color: #ffc107; 
+
+  /* Added a glow */
+  text-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+}

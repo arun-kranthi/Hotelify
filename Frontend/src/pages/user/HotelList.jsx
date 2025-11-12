@@ -83,7 +83,7 @@ const HotelList = () => {
         <div className="container py-5">
           
           {/* --- 2a. New Filter/Header Bar --- */}
-          <div className="d-flex justify-content-between align-items-center mb-4 p-3 bg-white rounded shadow-sm">
+          <div className="d-flex justify-content-between align-items-center mb-4 p-3 rounded shadow-sm bg-body">
             <h2 className="mb-0">
               Explore {selectedLocation === 'All' ? 'All Hotels' : selectedLocation}
             </h2>

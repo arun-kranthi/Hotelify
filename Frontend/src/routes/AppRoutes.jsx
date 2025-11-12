@@ -30,6 +30,7 @@ import HotelDetails from '../pages/user/HotelDetails';
 import BookingPage from '../pages/user/BookingPage';
 import PaymentPage from '../pages/user/PaymentPage';
 import MyBookingsPage from '../pages/user/MyBookingsPage';
+import ProfilePage from '../pages/user/Profile.jsx';
 
 const AppRoutes = () => {
   return (
@@ -63,6 +64,7 @@ const AppRoutes = () => {
           <Route path="/book/:hotelId" element={<BookingPage />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/my-bookings" element={<MyBookingsPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Route>
       </Route>
 

@@ -2,6 +2,7 @@
 using Microsoft.Identity.Client;
 using SmartHotelBookingSystem.DTO.module_2;
 using SmartHotelBookingSystem.Model;
+using SmartHotelBookingSystem.Repository;
 using SmartHotelBookingSystem.Repository.module2_Repos;
 
 namespace SmartHotelBookingSystem.Services.Module2_services
@@ -9,12 +10,14 @@ namespace SmartHotelBookingSystem.Services.Module2_services
     public class HotelService : IHotelService
     {
         private readonly IHotelRepository _repository;
+        private readonly IReviewRepository _reviewRepo;
        
         private readonly IMapper _mapper;
-        public HotelService(IHotelRepository repository, IMapper mapper)
+        public HotelService(IHotelRepository repository, IMapper mapper, IReviewRepository reviewRepo)
         {
             _repository = repository;
             _mapper = mapper;
+            _reviewRepo = reviewRepo;
         }
 
         public async Task<IEnumerable<HotelReadDto>> GetAllAsync()
@@ -26,7 +29,9 @@ namespace SmartHotelBookingSystem.Services.Module2_services
         public async Task<HotelReadDto?> GetByIdAsync(int id)
         {
             var hotel =await  _repository.GetByIdAsync(id);
-            return hotel == null? null : _mapper.Map<HotelReadDto>(hotel);
+            var hotelDto = _mapper.Map<HotelReadDto>(hotel);
+            hotelDto.Rating = _reviewRepo.GetAverageRatingByHotelId(id);
+            return hotel == null ? null : hotelDto;
         }
 
         public async Task<HotelReadDto> CreateAsync(HotelCreateDto dto)
