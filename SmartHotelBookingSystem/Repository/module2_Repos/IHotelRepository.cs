@@ -17,6 +17,7 @@ namespace SmartHotelBookingSystem.Repository.module2_Repos
 
         Task<IEnumerable<Hotel>> SearchAsync(string? name, string? location, double? minRating, double? maxRating);
         Task SaveChangesAsync();
-        
+        Task<IEnumerable<Hotel>> GetHotelsByManagerAsync(string managerId);
+
     }
 }

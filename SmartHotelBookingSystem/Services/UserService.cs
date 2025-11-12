@@ -104,5 +104,37 @@ namespace SmartHotelBookingSystem.Services
                 ContactNumber = user.ContactNumber
             };
         }
+        public async Task<UserResponseDto> GetUserByIdAsync(int id)
+        {
+            var user = await _repo.GetUserByIdAsync(id);
+            if (user == null)
+            {
+                return null; // The controller will handle this as a 404
+            }
+
+            // Map the User model to the DTO, just like in your other methods
+            return new UserResponseDto
+            {
+                UserID = user.UserID,
+                Name = user.Name,
+                Email = user.Email,
+                Role = user.Role.ToString(),
+                ContactNumber = user.ContactNumber,
+            };
+        }
+        public async Task<IEnumerable<UserResponseDto>> GetManagersAsync()
+        {
+            var managers = await _repo.GetUsersByRoleAsync(UserRole.HotelManager);
+
+            return managers.Select(u => new UserResponseDto
+            {
+                UserID = u.UserID,
+                Name = u.Name,
+                Email = u.Email,
+                Role = u.Role.ToString(),
+                ContactNumber = u.ContactNumber
+            });
+        }
+
     }
 }

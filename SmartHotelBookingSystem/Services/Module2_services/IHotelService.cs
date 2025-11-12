@@ -8,12 +8,8 @@ namespace SmartHotelBookingSystem.Services.Module2_services
         Task<IEnumerable<HotelReadDto>> GetAllAsync();
         Task<HotelReadDto?> GetByIdAsync(int id);
         Task<HotelReadDto> CreateAsync(HotelCreateDto dto);
-        
-
-        
-
         Task UpdateAsync(int id ,HotelUpdateDto dto);
-        Task DeleteAsync(int id);
-        
+        Task<bool> DeleteAsync(int id);
+        Task<IEnumerable<HotelReadDto>> GetHotelsByManagerAsync(string managerId);
     }
 }

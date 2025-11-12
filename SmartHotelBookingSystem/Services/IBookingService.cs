@@ -8,5 +8,6 @@ namespace SmartHotelBookingSystem.Services
         Task<BookingResponseDto> GetBookingAsync(int bookingId);
         Task CancelBookingAsync(int bookingId);
         Task<IEnumerable<UserBookingDto>> GetBookingsByUserIdAsync(int userId);
+        Task<IEnumerable<BookingResponseDtoManager>> GetBookingsForManagerAsync(string managerId);
     }
 }

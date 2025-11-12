@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 import DashboardNavbar from '../components/common/DashboardNavbar';
-import './Layouts.css'; // We'll create this file for sidebar styles
+import './Layouts.css'; //for sidebar styles
 
 const AdminLayout = () => {
   return (
@@ -32,11 +32,6 @@ const AdminLayout = () => {
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/admin/manage-hotels">
                     Manage Hotels
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/admin/reports">
-                    Reports
                   </NavLink>
                 </li>
               </ul>

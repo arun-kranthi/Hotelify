@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-// 1. Import the useTheme hook
+// Import the useTheme hook
 import { useTheme } from '../../context/ThemeContext';
 
 const PublicNavbar = () => {
-  // 2. Get the theme and toggle function from the context
+  // Get the theme and toggle function from the context
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -34,7 +34,7 @@ const PublicNavbar = () => {
         {/* Navbar Links */}
         <div className="collapse navbar-collapse" id="publicNavbar">
           <ul className="navbar-nav ms-auto align-items-center">
-            {/* --- Your Original Links --- */}
+            {/* --- Our original links --- */}
             <li className="nav-item">
               <NavLink className="nav-link" to="/about">
                 About
@@ -51,7 +51,7 @@ const PublicNavbar = () => {
               </Link>
             </li>
 
-            {/* --- 3. Add the Theme Toggle Button --- */}
+            {/* Add the Theme Toggle Button */}
             <li className="nav-item ms-2">
               <button 
                 className="btn btn-outline-secondary" 

@@ -570,3 +570,5 @@ C:\Users\2446428\OneDrive - Cognizant\Desktop\Project\SmartHotelBookingSystem\Sm
 C:\Users\2446428\OneDrive - Cognizant\Desktop\Project\SmartHotelBookingSystem\SmartHotelBookingSystem\obj\Debug\net9.0\SmartHotelBookingSystem.pdb
 C:\Users\2446428\OneDrive - Cognizant\Desktop\Project\SmartHotelBookingSystem\SmartHotelBookingSystem\obj\Debug\net9.0\SmartHotelBookingSystem.genruntimeconfig.cache
 C:\Users\2446428\OneDrive - Cognizant\Desktop\Project\SmartHotelBookingSystem\SmartHotelBookingSystem\obj\Debug\net9.0\ref\SmartHotelBookingSystem.dll
+C:\Users\2446425\Source\Repos\SmartHotelBookingSystem\SmartHotelBookingSystem\bin\Debug\net9.0\AutoMapper.dll
+C:\Users\2446425\Source\Repos\SmartHotelBookingSystem\SmartHotelBookingSystem\bin\Debug\net9.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

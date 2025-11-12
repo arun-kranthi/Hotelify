@@ -176,5 +176,20 @@ namespace SmartHotelBookingSystem.Services
                 TotalAmount = b.Payment?.Amount ?? 0
             });
         }
+        public async Task<IEnumerable<BookingResponseDtoManager>> GetBookingsForManagerAsync(string managerId)
+        {
+            var bookings = await _bookingRepo.GetBookingsByManagerAsync(managerId);
+
+            return bookings.Select(b => new BookingResponseDtoManager
+            {
+                BookingID = b.BookingID,
+                Status = b.Status,
+                TotalAmount = b.Payment?.Amount ?? 0,
+                CheckInDate = b.CheckInDate,
+                CheckOutDate = b.CheckOutDate,
+                UserFullName = b.User?.Name ?? "N/A",   
+                RoomNumber = b.Room?.RoomID.ToString() ?? "N/A" 
+            });
+        }
     }
 }

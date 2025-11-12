@@ -24,12 +24,16 @@ import Unauthorized from '../pages/auth/Unauthorized';
 import HotelList from '../pages/user/HotelList';
 import AdminDashboard from '../pages/admin/Dashboard';
 import ManagerDashboard from '../pages/manager/Dashboard';
-
+import ManageUsers from '../pages/admin/ManageUsers';
+import ManageHotels from '../pages/admin/ManageHotels';
 import HotelDetails from '../pages/user/HotelDetails';
+import ManageRooms from '../pages/manager/ManageRooms';
 // We'll create this component later, just make a placeholder for now
 import BookingPage from '../pages/user/BookingPage';
 import PaymentPage from '../pages/user/PaymentPage';
 import MyBookingsPage from '../pages/user/MyBookingsPage';
+import ProfilePage from '../pages/user/Profile.jsx';
+import ViewBookings from '../pages/manager/ViewBookings';
 
 const AppRoutes = () => {
   return (
@@ -63,13 +67,17 @@ const AppRoutes = () => {
           <Route path="/book/:hotelId" element={<BookingPage />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/my-bookings" element={<MyBookingsPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+
         </Route>
       </Route>
 
       {/* --- Manager Routes --- */}
       <Route element={<ProtectedRoute allowedRoles={['HotelManager']} />}>
         <Route element={<ManagerLayout />}>
-          <Route path="/manager/dashboard" element={<ManagerDashboard />} />
+                  <Route path="/manager/dashboard" element={<ManagerDashboard />} />
+                  <Route path="/manager/manage-rooms" element={<ManageRooms />} />
+                  <Route path="/manager/bookings" element={<ViewBookings />} />
           {/* Add other manager routes here (e.g., /manager/rooms) */}
         </Route>
       </Route>
@@ -77,7 +85,9 @@ const AppRoutes = () => {
       {/* --- Admin Routes --- */}
       <Route element={<ProtectedRoute allowedRoles={['Admin']} />}>
         <Route element={<AdminLayout />}>
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                  <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                  <Route path="/admin/manage-users" element={<ManageUsers />} />
+                  <Route path="/admin/manage-hotels" element={<ManageHotels />} />
           {/* Add other admin routes here (e.g., /admin/users) */}
         </Route>
       </Route>

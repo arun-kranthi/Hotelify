@@ -98,7 +98,7 @@ const LandingPage = () => {
                 <img src={teamMemberPlaceholder} className="card-img-top rounded-circle p-3" alt="Team Member" />
                 <div className="card-body">
                   <h5 className="card-title fw-bold">Abhihaas</h5>
-                  <p className="card-text text-primary"></p>
+                  <p className="card-text text-primary">2446395</p>
                 </div>
               </div>
             </div>
@@ -107,7 +107,7 @@ const LandingPage = () => {
                 <img src={teamMemberPlaceholder} className="card-img-top rounded-circle p-3" alt="Team Member" />
                 <div className="card-body">
                   <h5 className="card-title fw-bold">Chandana</h5>
-                  <p className="card-text text-primary"></p>
+                  <p className="card-text text-primary">2446383</p>
                 </div>
               </div>
             </div>
@@ -116,7 +116,7 @@ const LandingPage = () => {
                 <img src={teamMemberPlaceholder} className="card-img-top rounded-circle p-3" alt="Team Member" />
                 <div className="card-body">
                   <h5 className="card-title fw-bold">Keerthana</h5>
-                  <p className="card-text text-primary"></p>
+                  <p className="card-text text-primary">2446425</p>
                 </div>
               </div>
             </div>

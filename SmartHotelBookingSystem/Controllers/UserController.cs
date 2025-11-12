@@ -48,13 +48,35 @@ namespace SmartHotelBookingSystem.Controllers
         [HttpDelete("delete-admin-only/{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] int id)
         {
-            var success= await _userService.DeleteUserAsync(id);
-            if(!success)
+            try
             {
-                return NotFound("User not found");
+                var success = await _userService.DeleteUserAsync(id);
+
+                if (!success)
+                {
+                    return NotFound(new { message = "User not found" });
+                }
+
+                return Ok(new { message = "Delete Successful" });
             }
-            return Ok("Delete Successful");
+            catch (InvalidOperationException ex)
+            {
+                // Business rule violation (e.g., user has loyalty account)
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception)
+            {
+                // Unexpected error
+                return StatusCode(500, new { message = "An unexpected error occurred while deleting the user." });
+            }
         }
 
+        [HttpGet("managers")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetManagers()
+        {
+            var managers = await _userService.GetManagersAsync();
+            return Ok(managers);
+        }
     }
 }

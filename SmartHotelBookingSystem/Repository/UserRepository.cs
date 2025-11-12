@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmartHotelBookingSystem.Data;
+using SmartHotelBookingSystem.Enums;
 using SmartHotelBookingSystem.Model;
 
 namespace SmartHotelBookingSystem.Repository
@@ -20,11 +21,17 @@ namespace SmartHotelBookingSystem.Repository
 
         public async Task DeleteUserAsync(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if(user!=null)
-            {
-                _context.Users.Remove(user);
-            }
+            var user = await _context.Users
+                .Include(u => u.LoyaltyAccount)
+                .FirstOrDefaultAsync(u => u.UserID == id);
+
+            if (user == null)
+                throw new KeyNotFoundException("User not found.");
+
+            if (user.LoyaltyAccount != null)
+                throw new InvalidOperationException("Cannot delete user with an active loyalty account.");
+
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
         }
 
@@ -48,5 +55,12 @@ namespace SmartHotelBookingSystem.Repository
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
         }
+        public async Task<IEnumerable<User>> GetUsersByRoleAsync(UserRole role)
+        {
+            return await _context.Users
+                .Where(u => u.Role == role)
+                .ToListAsync();
+        }
+
     }
 }
