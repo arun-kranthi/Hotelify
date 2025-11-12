@@ -6,18 +6,6 @@ const ManagerDashboard = () => {
   const axiosPrivate = useAdminAxios();
   const [managerName, setManagerName] = useState('');
 
-  useEffect(() => {
-    const fetchManagerProfile = async () => {
-      try {
-        const response = await axiosPrivate.get('/User/profile');
-        console.log("Profile response:", response.data); // Debug
-        setManagerName(response.data.name); // Make sure backend sends "name"
-      } catch (err) {
-        console.error('Failed to fetch manager profile:', err);
-      }
-    };
-    fetchManagerProfile();
-  }, [axiosPrivate]);
 
   return (
     <div className="container my-5">
@@ -51,3 +39,4 @@ const ManagerDashboard = () => {
 };
 
 export default ManagerDashboard;
+
