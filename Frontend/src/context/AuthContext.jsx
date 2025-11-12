@@ -1,14 +1,14 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { jwtDecode } from 'jwt-decode'; // Correct import
-import { loginUser } from '../api/authApi'; // Import your API call
+import { jwtDecode } from 'jwt-decode'; // for decoding JWT tokens
+import { loginUser } from '../api/authApi'; // Importing API call
 
-// Create the context
+// the context
 const AuthContext = createContext();
 
-// Create a custom hook to use the context
+// Creating a custom hook to use the context
 export const useAuth = () => useContext(AuthContext);
 
-// Create the provider component
+// the provider component
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [user, setUser] = useState(null);
@@ -36,13 +36,13 @@ export const AuthProvider = ({ children }) => {
   // Helper function to set auth state
   const _setAuthState = (newToken, decodedToken) => {
     // Extract info from the token
-    // **IMPORTANT**: Adjust these keys to match your JWT claims!
+    
     const username = decodedToken.Name || decodedToken.sub || 'User';
     const userRoles = decodedToken.role || [];
     const userId = decodedToken.sub;
     
     setToken(newToken);
-    setUser({ id: userId, username: username });// Store whatever user info you need
+    setUser({ id: userId, username: username });
     setRoles(Array.isArray(userRoles) ? userRoles : [userRoles]);
     setIsAuthenticated(true);
     localStorage.setItem('token', newToken);
@@ -59,16 +59,16 @@ export const AuthProvider = ({ children }) => {
 
 const login = async (email, password) => {
     try {
-      // 1. Call your API with email
+      // Call API with email
       const data = await loginUser(email, password);
       
-      // 2. Decode the token
+      // Decode the token
       const decoded = jwtDecode(data.token);
       
-      // 3. Set the state
+      // Set the state
       _setAuthState(data.token, decoded);
       
-      // 4. Return the roles for redirection
+      // Return the roles for redirection
       const userRoles = decoded.role || [];
       return Array.isArray(userRoles) ? userRoles : [userRoles];
     } catch (error) {
@@ -80,13 +80,11 @@ const login = async (email, password) => {
 
   const logout = () => {
     _clearAuthState();
-    // You might want to redirect to home page here
-    window.location.href = '/login';
+    // redirect to home page here
+    window.location.href = '/';
   };
 
-  // We don't need signup in the context for now,
-  // the page can call the api/authApi.js file directly.
-
+ 
   const value = {
     token,
     user,
